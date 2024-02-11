@@ -62,7 +62,7 @@ public class ClubDAO implements IClubDAO<Club>{
             n = pstmt.executeUpdate();
             pstmt.close();
             if (n == 1) {
-                System.out.println("Updated with success");
+                System.out.println("Updated with success valid");
                 return true;
             } else
                 System.out.println("No update has been done");

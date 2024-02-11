@@ -178,7 +178,7 @@ public class ClubDAO implements IClubDAO<Club>{
             n = pstmt.executeUpdate();
             pstmt.close();
             if (n == 1) {
-                System.out.println("club removale was succeded");
+                System.out.println("club removale was succeded good");
                 return true;
             } else {
                 System.out.println("no club was deleted");

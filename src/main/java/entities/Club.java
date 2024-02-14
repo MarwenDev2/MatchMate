@@ -7,31 +7,37 @@ public class Club {
     private int id;
     private User user;
     private String name;
-    private String location;
+    private Float height,width;
     private Time startTime;
     private Time endTime;
     private int stadiumNbr;
 
+    private String description;
+
     public Club() {
     }
 
-    public Club(int id, User user, String name, String location, Time startTime, Time endTime, int stadiumNbr) {
+    public Club(int id, User user, String name, Float height, Float width, Time startTime, Time endTime, int stadiumNbr, String description) {
         this.id = id;
         this.user = user;
         this.name = name;
-        this.location = location;
+        this.height = height;
+        this.width = width;
         this.startTime = startTime;
         this.endTime = endTime;
         this.stadiumNbr = stadiumNbr;
+        this.description = description;
     }
 
-    public Club(User user, String name, String location, Time startTime, Time endTime, int stadiumNbr) {
+    public Club(User user, String name, Float height, Float width, Time startTime, Time endTime, int stadiumNbr, String description) {
         this.user = user;
         this.name = name;
-        this.location = location;
+        this.height = height;
+        this.width = width;
         this.startTime = startTime;
         this.endTime = endTime;
         this.stadiumNbr = stadiumNbr;
+        this.description = description;
     }
 
     public User getUser() {
@@ -58,12 +64,20 @@ public class Club {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public Float getHeight() {
+        return height;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setHeight(Float height) {
+        this.height = height;
+    }
+
+    public Float getWidth() {
+        return width;
+    }
+
+    public void setWidth(Float width) {
+        this.width = width;
     }
 
     public Time getStartTime() {
@@ -90,6 +104,14 @@ public class Club {
         this.stadiumNbr = stadiumNbr;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,10 +126,12 @@ public class Club {
                 "id=" + id +
                 ", user=" + user +
                 ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
+                ", height=" + height +
+                ", width=" + width +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", stadiumNbr=" + stadiumNbr +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

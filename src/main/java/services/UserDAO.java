@@ -1,19 +1,16 @@
 package services;
 
 import database.Connexion;
-import entities.Club;
-import entities.Stadium;
-import entities.User;
+import entities.*;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class UserDAO {
+public class UserDAO implements IUserDAO<User>{
 
     Connection cnx = Connexion.getInstance();
 
-    public boolean save(User u) {
+    public boolean save(User u){
         if (u == null)
             return false;
 
@@ -21,12 +18,14 @@ public class UserDAO {
         PreparedStatement pstmt = null;
         try {
             pstmt = cnx.prepareStatement(
-                    "insert into club(firstName,lastName,phoneNumber,email,password,role) values (?,?,?,?,?,?)");
+                    "insert into user(firstName,lastName,phoneNumber,email,password,role,image) values (?,?,?,?,?,?,?)");
             pstmt.setString(1, u.getFirstName());
             pstmt.setString(2, u.getLastName());
             pstmt.setInt(3, u.getPhoneNumber());
             pstmt.setString(4, u.getEmail());
+            pstmt.setString(5, u.getPassword());
             pstmt.setString(6, u.getRole());
+            pstmt.setString(7,u.getImage());
             n = pstmt.executeUpdate();
             pstmt.close();
             if (n == 1) {
@@ -50,13 +49,14 @@ public class UserDAO {
         PreparedStatement pstmt = null;
         try {
             pstmt = cnx.prepareStatement(
-                    "update User set firstName= ?, lastName= ?, phoneNumber= ?,email= ?,password= ? where id=?");
+                    "update User set firstName= ?, lastName= ?, phoneNumber= ?,email= ?,password= ?,image=? where id=?");
             pstmt.setString(1, u.getFirstName());
             pstmt.setString(2, u.getLastName());
             pstmt.setInt(3, u.getPhoneNumber());
             pstmt.setString(4, u.getEmail());
             pstmt.setString(5, u.getRole());
             pstmt.setInt(6, u.getId());
+            pstmt.setString(7,u.getImage());
             n = pstmt.executeUpdate();
             pstmt.close();
             if (n == 1) {
@@ -80,7 +80,7 @@ public class UserDAO {
             pstmt.setInt(1, id);
             ResultSet res = pstmt.executeQuery();
             if (res.next()){
-                User u1 = new User(id,res.getString(2),res.getString(3),res.getInt(4),res.getString(5),res.getString(6),res.getString(7));
+                User u1 = new User(id,res.getString(2),res.getString(3),res.getInt(4),res.getString(5),res.getString(6),res.getString(7),res.getString(8));
                 u=u1;
             }
             pstmt.close();
@@ -123,7 +123,7 @@ public class UserDAO {
             PreparedStatement pstmt = cnx.prepareStatement("select * from user");
             ResultSet res = pstmt.executeQuery();
             while (res.next()) {
-                cl.add(new User(res.getInt(1),res.getString(2),res.getString(3),res.getInt(4),res.getString(5),res.getString(6),res.getString(7)));
+                cl.add(new User(res.getInt(1),res.getString(2),res.getString(3),res.getInt(4),res.getString(5),res.getString(6),res.getString(7),res.getString(8)));
             }
             pstmt.close();
         } catch (Exception e) {

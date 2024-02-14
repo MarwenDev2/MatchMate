@@ -2,32 +2,31 @@ package entities;
 
 import java.util.Objects;
 
-public class Image {
-    private int id;
-    private String name,url,type;
+public class ImageStadium {
+    private String ref,name,url,type;
 
-    public Image() {
+    public ImageStadium() {
     }
 
-    public Image(int id, String name, String url, String type) {
-        this.id = id;
+    public ImageStadium(String ref, String name, String url, String type) {
+        this.ref = ref;
         this.name = name;
         this.url = url;
         this.type = type;
     }
 
-    public Image(String name, String url, String type) {
+    public ImageStadium(String name, String url, String type) {
         this.name = name;
         this.url = url;
         this.type = type;
     }
 
-    public int getId() {
-        return id;
+    public String getRef() {
+        return ref;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRef(String ref) {
+        this.ref = ref;
     }
 
     public String getName() {
@@ -58,14 +57,14 @@ public class Image {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Image image = (Image) o;
-        return id == image.id;
+        ImageStadium that = (ImageStadium) o;
+        return Objects.equals(ref, that.ref);
     }
 
     @Override
     public String toString() {
-        return "Image{" +
-                "id=" + id +
+        return "ImageStadium{" +
+                "ref='" + ref + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", type='" + type + '\'' +

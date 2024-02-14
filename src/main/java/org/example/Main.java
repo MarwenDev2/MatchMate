@@ -26,7 +26,7 @@ public class Main {
         User u1 = new User();
         u1.setId(userId);
         newClub.setUser(u1); // Set the user ID
-        newClub.setLocation("Location");
+        //newClub.setLocation("Location");
         newClub.setName("Clyubyj");
         newClub.setStartTime(new Time(10,00,00));
         newClub.setEndTime(new Time(15,00,00));

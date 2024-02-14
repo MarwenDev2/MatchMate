@@ -19,13 +19,15 @@ public class ClubDAO implements IClubDAO<Club>{
 
             try {
                 pstmt = cnx.prepareStatement(
-                        "insert into club(name,location,startTime,endTime,stadiumNbr,idUser) values (?,?,?,?,?,?)");
+                        "insert into club(name,height,widht,startTime,endTime,stadiumNbr,idUser) values (?,?,?,?,?,?,?,?)");
                 pstmt.setString(1, c.getName());
-                pstmt.setString(2, c.getLocation());
-                pstmt.setTime(3, c.getStartTime());
-                pstmt.setTime(4, c.getEndTime());
-                pstmt.setInt(5, 0);
-                pstmt.setInt(6, c.getUser().getId());
+                pstmt.setFloat(2, c.getHeight());
+                pstmt.setFloat(3, c.getWidth());
+                pstmt.setTime(4, c.getStartTime());
+                pstmt.setTime(5, c.getEndTime());
+                pstmt.setInt(6, 0);
+                pstmt.setString(7, c.getDescription());
+                pstmt.setInt(8, c.getUser().getId());
                 n = pstmt.executeUpdate();
                 pstmt.close();
                 if (n == 1) {
@@ -51,14 +53,16 @@ public class ClubDAO implements IClubDAO<Club>{
 
         try {
             pstmt = cnx.prepareStatement(
-                    "update Club set name= ?, location= ?, startTime= ?,endTime= ?,stadiumNbr= ?, idUser= ? where id=?");
+                    "update Club set name= ?, height= ?, width=?, startTime= ?,endTime= ?,stadiumNbr= ?, description=?, idUser= ? where id=?");
             pstmt.setString(1, c.getName());
-            pstmt.setString(2, c.getLocation());
-            pstmt.setTime(3, c.getStartTime());
-            pstmt.setTime(4, c.getEndTime());
-            pstmt.setInt(5, c.getStadiumNbr());
-            pstmt.setInt(6, c.getUser().getId());
-            pstmt.setInt(7, c.getId());
+            pstmt.setFloat(2, c.getHeight());
+            pstmt.setFloat(3, c.getWidth());
+            pstmt.setTime(4, c.getStartTime());
+            pstmt.setTime(5, c.getEndTime());
+            pstmt.setInt(6, 0);
+            pstmt.setString(7, c.getDescription());
+            pstmt.setInt(8, c.getUser().getId());
+            pstmt.setInt(9, c.getId());
             n = pstmt.executeUpdate();
             pstmt.close();
             if (n == 1) {
@@ -81,8 +85,8 @@ public class ClubDAO implements IClubDAO<Club>{
             pstmt.setInt(1, id);
             ResultSet res = pstmt.executeQuery();
             if (res.next()){
-                User us1 = userDAO.findById(res.getInt(7));
-                c = new Club(res.getInt(1),us1,res.getString(2), res.getString(3), res.getTime(4),res.getTime(5),res.getInt(6));
+                User us1 = userDAO.findById(res.getInt(9));
+                c = new Club(res.getInt(1),us1,res.getString(2), res.getFloat(3),res.getFloat(4), res.getTime(5),res.getTime(6),res.getInt(7),res.getString(8));
             }
             pstmt.close();
         } catch (Exception e) {
@@ -119,9 +123,8 @@ public class ClubDAO implements IClubDAO<Club>{
             pstmt.setString(1, ref);
             ResultSet res = pstmt.executeQuery();
             if (res.next()){
-                User us1 = userDAO.findById(res.getInt(7));
-                c = new Club(res.getInt(1),us1,res.getString(2), res.getString(3), res.getTime(4),res.getTime(5),res.getInt(6));
-            }
+                User us1 = userDAO.findById(res.getInt(9));
+                c = new Club(res.getInt(1),us1,res.getString(2), res.getFloat(3),res.getFloat(4), res.getTime(5),res.getTime(6),res.getInt(7),res.getString(8));            }
             pstmt.close();
         } catch (Exception e) {
             System.out.println("La requ�te n'a pas pu �tre ex�cut�e");
@@ -155,8 +158,8 @@ public class ClubDAO implements IClubDAO<Club>{
             PreparedStatement pstmt = cnx.prepareStatement("select * from club");
             ResultSet res = pstmt.executeQuery();
             while (res.next()) {
-                User us1 = userDAO.findById(res.getInt(7));
-                c.add(new Club(res.getInt(1),us1,res.getString(2), res.getString(3), res.getTime(4), res.getTime(5), res.getInt(6)));
+                User us1 = userDAO.findById(res.getInt(9));
+                c.add(new Club(res.getInt(1),us1,res.getString(2), res.getFloat(3),res.getFloat(4), res.getTime(5),res.getTime(6),res.getInt(7),res.getString(8)));
             }
             pstmt.close();
         } catch (Exception e) {
@@ -191,10 +194,5 @@ public class ClubDAO implements IClubDAO<Club>{
             return false;
         }
     }
-
-
-
-
-
 
 }

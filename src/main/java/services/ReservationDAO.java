@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ReservationDAO {
+public class ReservationDAO implements IReservationDAO<Reservation>{
     Connection cnx = Connexion.getInstance();
     UserDAO ud = new UserDAO();
     StadiumDAO sd = new StadiumDAO();
@@ -108,6 +108,72 @@ public class ReservationDAO {
                 User u1 = ud.findById(res.getInt(2));
                 Stadium s = sd.findById(res.getString(3));
                 list.add(new Reservation(res.getInt(1),u1,s,d,res.getTime(5),res.getTime(6),res.getString(7)));
+            }
+            pstmt.close();
+        } catch (Exception e) {
+            System.out.println("La requ�te n'a pas pu �tre ex�cut�e");
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Reservation> findAllByStadium(String ref) {
+
+        PreparedStatement pstmt = null;
+        List<Reservation> list = new ArrayList<>();
+
+        try {
+            pstmt = cnx.prepareStatement("select * from reservation where refStadium=?");
+            pstmt.setString(1, ref);
+            ResultSet res = pstmt.executeQuery();
+            while(res.next()){
+                User u1 = ud.findById(res.getInt(2));
+                Stadium s = sd.findById(ref);
+                list.add(new Reservation(res.getInt(1),u1,s,res.getDate(4),res.getTime(5),res.getTime(6),res.getString(7)));
+            }
+            pstmt.close();
+        } catch (Exception e) {
+            System.out.println("La requ�te n'a pas pu �tre ex�cut�e");
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Reservation> findAllByStadiumDate(String ref,Date d) {
+
+        PreparedStatement pstmt = null;
+        List<Reservation> list = new ArrayList<>();
+
+        try {
+            pstmt = cnx.prepareStatement("select * from reservation where refStadium=? and date=?");
+            pstmt.setString(1, ref);
+            ResultSet res = pstmt.executeQuery();
+            while(res.next()){
+                User u1 = ud.findById(res.getInt(2));
+                Stadium s = sd.findById(ref);
+                list.add(new Reservation(res.getInt(1),u1,s,d,res.getTime(5),res.getTime(6),res.getString(7)));
+            }
+            pstmt.close();
+        } catch (Exception e) {
+            System.out.println("La requ�te n'a pas pu �tre ex�cut�e");
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<Reservation> findAllByType(String t) {
+
+        PreparedStatement pstmt = null;
+        List<Reservation> list = new ArrayList<>();
+
+        try {
+            pstmt = cnx.prepareStatement("select * from reservation where type=?");
+            pstmt.setString(1, t);
+            ResultSet res = pstmt.executeQuery();
+            while(res.next()){
+                User u1 = ud.findById(res.getInt(2));
+                Stadium s = sd.findById(res.getString(3));
+                list.add(new Reservation(res.getInt(1),u1,s,res.getDate(4),res.getTime(5),res.getTime(6),t));
             }
             pstmt.close();
         } catch (Exception e) {

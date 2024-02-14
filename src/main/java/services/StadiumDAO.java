@@ -6,7 +6,7 @@ import entities.*;
 import java.sql.*;
 import java.util.*;
 
-public class StadiumDAO {
+public class StadiumDAO implements IStadiumDAO<Stadium>{
 
     static Connection cnx = Connexion.getInstance();
     ClubDAO clubDAO = new ClubDAO();
@@ -144,7 +144,7 @@ public class StadiumDAO {
 
     }
 
-    public List<Stadium> findAllByCLub(int idClub) {
+    public List<Stadium> findAllByClub(int idClub) {
         List<Stadium> c = new ArrayList<Stadium>();
         try {
             PreparedStatement pstmt = cnx.prepareStatement("select * from club c join stadium s on c.id = s.idClub where id=?");

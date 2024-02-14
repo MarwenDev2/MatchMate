@@ -1,7 +1,5 @@
 package services;
 
-import entities.Club;
-
 import java.util.List;
 
 public interface IClubDAO <T>{

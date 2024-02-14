@@ -10,19 +10,9 @@ public class User {
     private String email;
     private String password;
     private String role;
-    private Image image;
+    private String image;
 
     public User() {
-    }
-
-    public User(int id, String firstName, String lastName, int phoneNumber, String email, String password, String role) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-        this.role = role;
     }
 
     public User(String firstName, String lastName, int phoneNumber, String email, String password, String role) {
@@ -34,7 +24,9 @@ public class User {
         this.role = role;
     }
 
-    public User(int id, String firstName, String lastName, int phoneNumber, String email, String password, String role, Image image) {
+
+
+    public User(int id, String firstName, String lastName, int phoneNumber, String email, String password, String role, String image) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -101,11 +93,11 @@ public class User {
         this.role = role;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -114,9 +106,8 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id;
+        return Objects.equals(role, user.role);
     }
-
     @Override
     public String toString() {
         return "User{" +

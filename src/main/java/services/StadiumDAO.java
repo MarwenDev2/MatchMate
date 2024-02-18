@@ -11,15 +11,17 @@ public class StadiumDAO implements IStadiumDAO<Stadium>{
     static Connection cnx = Connexion.getInstance();
     ClubDAO clubDAO = new ClubDAO();
 
-    public boolean save(Stadium s) {
+    public int save(Stadium s) {
         if (s == null)
-            return false;
+            return -1;
         int n = 0;
         PreparedStatement pstmt = null;
+        ResultSet generatedKeys = null;
 
         try {
             pstmt = cnx.prepareStatement(
-                    "insert into stadium(reference,idClub,height,width,price,rate) values (?,?,?,?,?,?)");
+                    "insert into stadium(reference,idClub,height,width,price,rate) values (?,?,?,?,?,?)",
+                    Statement.RETURN_GENERATED_KEYS);
             String stadiumRef = s.getClub().getName().substring(0, Math.min(s.getClub().getName().length(), 3)).toUpperCase();
             Random random = new Random();
             int randomNumber = random.nextInt(1000);
@@ -33,19 +35,45 @@ public class StadiumDAO implements IStadiumDAO<Stadium>{
             Club c =clubDAO.findById(s.getClub().getId());
             c.setStadiumNbr(c.getStadiumNbr()+1);
             n = pstmt.executeUpdate();
-            pstmt.close();
             if (n == 1) {
-                System.out.println("the Stadium has been added");
-                clubDAO.update(c);
-                return true;
+                // Retrieve the auto-generated keys
+                generatedKeys = pstmt.getGeneratedKeys();
+
+                if (generatedKeys.next()) {
+                    int stadiumId = generatedKeys.getInt(1); // Retrieve the auto-generated club ID
+                    System.out.println("The stadium has been added with ID: " + stadiumId);
+                    clubDAO.update(c);
+                    return stadiumId; // Return the generated club ID
+                } else {
+                    System.out.println("Failed to retrieve stadium ID");
+                    return -1; // Return -1 if club ID retrieval fails
+                }
             } else {
-                System.out.println("NO Stadium has been added");
+                System.out.println("No stadium has been added");
+                return -1; // Return -1 to indicate failure
             }
 
         } catch (SQLException e1) {
-            System.out.println("the" + s.getReference() + "stadium addition was failed"+ e1.getMessage());
+            System.out.println("the" + s.getReference() + "stadium addition was failed" + e1.getMessage());
+            return -1;
         }
-        return false;
+        finally {
+            // Close resources
+            if (generatedKeys != null) {
+                try {
+                    generatedKeys.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public boolean update(Stadium s) {

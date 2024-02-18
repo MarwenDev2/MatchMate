@@ -11,6 +11,14 @@ public class Stadium {
     public Stadium() {
     }
 
+    public Stadium(Club club, float height, float width, int price, int rate) {
+        this.club = club;
+        this.height = height;
+        this.width = width;
+        this.price = price;
+        this.rate = rate;
+    }
+
     public Stadium(String reference, Club club, float height, float width, int price, int rate) {
         this.reference = reference;
         this.club = club;

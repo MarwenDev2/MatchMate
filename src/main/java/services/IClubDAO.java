@@ -3,7 +3,7 @@ package services;
 import java.util.List;
 
 public interface IClubDAO <T>{
-    public boolean save(T t);
+    public int save(T t);
     public boolean update(T t);
     public T findById(int id);
     public boolean findByName(String name);

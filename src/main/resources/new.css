@@ -1,0 +1,34 @@
+.root {
+    -fx-background-color: #f0f0f0; /* Background color */
+}
+
+.label {
+    -fx-font-size: 18px; /* Font size */
+    -fx-font-weight: bold; /* Font weight */
+}
+
+.table-view {
+    -fx-background-color: #ffffff; /* Table background color */
+}
+
+.table-column {
+    -fx-alignment: CENTER; /* Align column content to center */
+    -fx-font-weight: bold; /* Font weight */
+}
+
+.button {
+    -fx-background-color: #4caf50; /* Button background color */
+    -fx-text-fill: white; /* Button text color */
+    -fx-font-weight: bold; /* Font weight */
+    -fx-padding: 8px 16px; /* Padding */
+}
+
+.button:hover {
+    -fx-background-color: #388e3c; /* Button background color on hover */
+
+}
+/* styles.css */
+
+.hbox-navbar {
+    -fx-background-color: #4CAF50; /* Green color */
+}

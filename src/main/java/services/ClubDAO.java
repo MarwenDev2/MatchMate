@@ -10,38 +10,67 @@ public class ClubDAO implements IClubDAO<Club>{
 
     Connection cnx = Connexion.getInstance();
     UserDAO userDAO = new UserDAO();
-    public boolean save(Club c) {
+    public int save(Club c) {
         if (c == null)
-            return false;
+            return -1; // Return -1 to indicate failure
 
-        int n = 0;
         PreparedStatement pstmt = null;
+        ResultSet generatedKeys = null;
 
-            try {
-                pstmt = cnx.prepareStatement(
-                        "insert into club(name,height,widht,startTime,endTime,stadiumNbr,idUser) values (?,?,?,?,?,?,?,?)");
-                pstmt.setString(1, c.getName());
-                pstmt.setFloat(2, c.getHeight());
-                pstmt.setFloat(3, c.getWidth());
-                pstmt.setTime(4, c.getStartTime());
-                pstmt.setTime(5, c.getEndTime());
-                pstmt.setInt(6, 0);
-                pstmt.setString(7, c.getDescription());
-                pstmt.setInt(8, c.getUser().getId());
-                n = pstmt.executeUpdate();
-                pstmt.close();
-                if (n == 1) {
-                    System.out.println("the Club has been added");
-                    return true;
+        try {
+            pstmt = cnx.prepareStatement(
+                    "insert into club(name,height,width,startTime,endTime,stadiumNbr,description,idUser) values (?,?,?,?,?,?,?,?)",
+                    Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, c.getName());
+            pstmt.setFloat(2, c.getHeight());
+            pstmt.setFloat(3, c.getWidth());
+            pstmt.setTime(4, c.getStartTime());
+            pstmt.setTime(5, c.getEndTime());
+            pstmt.setInt(6, c.getStadiumNbr());
+            pstmt.setString(7, c.getDescription());
+            pstmt.setInt(8, c.getUser().getId());
+
+            int n = pstmt.executeUpdate();
+
+            if (n == 1) {
+                // Retrieve the auto-generated keys
+                generatedKeys = pstmt.getGeneratedKeys();
+
+                if (generatedKeys.next()) {
+                    int clubId = generatedKeys.getInt(1); // Retrieve the auto-generated club ID
+                    System.out.println("The Club has been added with ID: " + clubId);
+                    return clubId; // Return the generated club ID
                 } else {
-                    System.out.println("NO club has been added");
+                    System.out.println("Failed to retrieve club ID");
+                    return -1; // Return -1 if club ID retrieval fails
                 }
-
-            } catch (SQLException e1) {
-                System.out.println("the" + c.getName() + " club addition was failed"+ e1.getMessage());
+            } else {
+                System.out.println("No club has been added");
+                return -1; // Return -1 to indicate failure
             }
-        return false;
+
+        } catch (SQLException e1) {
+            System.out.println("The " + c.getName() + " club addition failed: " + e1.getMessage());
+            return -1; // Return -1 to indicate failure
+        } finally {
+            // Close resources
+            if (generatedKeys != null) {
+                try {
+                    generatedKeys.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
+
 
     public boolean update(Club c) {
         if (c == null)
@@ -113,6 +142,26 @@ public class ClubDAO implements IClubDAO<Club>{
         }
         return false;
     }
+
+    public List<Club> findByUser(int idUser) {
+        PreparedStatement pstmt = null;
+        List<Club> c = new ArrayList<Club>();
+        try {
+            pstmt = cnx.prepareStatement("select * from club where idUser =?");
+            pstmt.setInt(1, idUser);
+            ResultSet res = pstmt.executeQuery();
+            while(res.next()){
+                User us1 = userDAO.findById(idUser);
+                c.add(new Club(res.getInt(1),us1,res.getString(2), res.getFloat(3),res.getFloat(4), res.getTime(5),res.getTime(6),res.getInt(7),res.getString(8)));
+            }
+            pstmt.close();
+        } catch (Exception e) {
+            System.out.println("La requete n'a pas pu etre executee");
+            e.printStackTrace();
+        }
+        return c;
+    }
+
 
     public Club findByRef(String ref) {
         Connection cnx = Connexion.getInstance();

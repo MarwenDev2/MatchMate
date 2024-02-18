@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewClubController">
+    <top>
+        <VBox alignment="CENTER_LEFT" spacing="10">
+            <!-- Logo -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: E8E4C9;">
+                <ImageView>
+                    <image>
+                        <Image url="@../Logo.png" />
+                    </image>
+                </ImageView>
+                <Label styleClass="logo-text">
+                    <graphic>
+                        <HBox spacing="0">
+                            <Label styleClass="logo-m" text="M" />
+                            <Label styleClass="logo-atch" text="atch" />
+                            <Label styleClass="logo-m" text="M" />
+                            <Label styleClass="logo-ate" text="ate" />
+                        </HBox>
+                    </graphic>
+                </Label>
+            </HBox>
+        </VBox>
+    </top>
+    <left>
+        <VBox alignment="CENTER_LEFT" prefHeight="506.0" prefWidth="132.0" spacing="10" styleClass="sidebar">
+            <!-- Sidebar -->
+            <Button styleClass="sidebar-button" text="Club" />
+            <Button styleClass="sidebar-button" text="Reservation" />
+            <!-- Add more sidebar options as needed -->
+        </VBox>
+    </left>
+    <center>
+        <AnchorPane>
+            <!-- Club Information Form -->
+            <TableView fx:id="clubTableView" layoutX="39.0" layoutY="50.0" prefHeight="355.0" prefWidth="714.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                <columns>
+                    <TableColumn fx:id="nameColumn" prefWidth="100.0" text="Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="name" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="heightColumn" prefWidth="100.0" text="Height">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Height" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="widthColumn" prefWidth="100.0" text="Width">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Width" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="startTimeColumn" prefWidth="100.0" text="Start Time">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="startTime" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="endTimeColumn" prefWidth="100.0" text="End Time">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="endTime" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="stadiumNbrColumn" prefWidth="100.0" text="stadiumNbr">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="stadiumNbr" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="descriptionColumn" prefWidth="100.0" text="Description">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="description" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="actionsColumn" prefWidth="160.0" text="Actions" />
+                </columns>
+            </TableView>
+            <Button fx:id="addButton" layoutX="43.0" layoutY="434.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Add">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button layoutX="411.0" layoutY="435.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Refresh" />
+
+               <HBox layoutX="14.0" layoutY="14.0" />
+        </AnchorPane>
+    </center>
+</BorderPane>

@@ -19,7 +19,8 @@ public class Main {
         StadiumDAO sDAO = new StadiumDAO();
         ReservationDAO rDAO = new ReservationDAO();
 
-        int userId = 1; // Assuming user ID 1 is the owner
+        int userId = 4; // Assuming user ID 1 is the owner
+
 
         // Create a new club
        Club newClub = new Club();
@@ -30,7 +31,10 @@ public class Main {
         newClub.setName("Clyubyj");
         newClub.setStartTime(new Time(10,00,00));
         newClub.setEndTime(new Time(15,00,00));
-
+        newClub.setDescription("sdfsvssv");
+        newClub.setStadiumNbr(0);
+        newClub.setHeight(14f);
+        newClub.setWidth(12f);
 
         Stadium newStadium = new Stadium();
         newStadium.setReference("CLY317");
@@ -42,17 +46,19 @@ public class Main {
         club.setId(12);
         club.setName("Clyubyj");// Assuming the ID of the club is 1
         newStadium.setClub(club);
+        //System.out.println(clubService.save(newClub));
         //sDAO.save(newStadium);
 
         //System.out.println(clubService.findByRef("CLU18"));
 
         List<Stadium> c = new ArrayList<Stadium>();
+        System.out.println(clubService.findByUser(5));
 
         //System.out.println(c=sDAO.findAllByCLub(12));
 
         Reservation r = new Reservation(u1,newStadium,Date.valueOf("2001-04-04"),new Time(14,30,00),new Time(15,30,00),"assigned");
 
-       rDAO.delete(1);
+        //rDAO.delete(1);
        // System.out.println(rDAO.findAllByDate(Date.valueOf("2001-04-04")));
 
 

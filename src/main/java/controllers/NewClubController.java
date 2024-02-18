@@ -27,6 +27,10 @@ import java.util.List;
 public class NewClubController {
 
     @FXML
+    private Label titleLabel;
+    @FXML
+    private Button saveButton;
+    @FXML
     private Button cancelButton;
     @FXML
     private Button clearButton;
@@ -84,7 +88,7 @@ public class NewClubController {
         viewClubsButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root, 1100, 600);
                 Stage stage = (Stage) viewClubsButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -95,11 +99,32 @@ public class NewClubController {
     }
 
     public void populateFieldsWithClubData(Club club) {
+        int idC = club.getId();
         clubNameField.setText(club.getName());
         heightField.setText(String.valueOf(club.getHeight()));
         widthField.setText(String.valueOf(club.getWidth()));
+        // Set end time
+        int startHour = club.getStartTime().getHours();
+        int startMinute = club.getStartTime().getMinutes();
+        startHourComboBox.setValue(startHour);
+        startMinuteComboBox.setValue(startMinute);
+        // Set end time
+        int endHour = club.getEndTime().getHours();
+        int endMinute = club.getEndTime().getMinutes();
+        endHourComboBox.setValue(endHour);
+        endMinuteComboBox.setValue(endMinute);
+        // Set description
+        descriptionArea.setText(club.getDescription());
 
-        // Populate other fields accordingly...
+        List<Image> images = imageDAO.findByObjectId(idC,"club");
+        for (Image image : images) {
+            ImageView imageView = new ImageView(image.getUrl());
+            imageView.setFitWidth(100);
+            imageView.setFitHeight(100);
+            imageFlowPane.getChildren().add(imageView);
+        }
+        titleLabel.setText("Change your Club");
+        saveButton.setText("Update");
     }
     @FXML
     public void saveClub() {
@@ -194,7 +219,7 @@ public class NewClubController {
         cancelButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root, 1000, 600);
                 Stage stage = (Stage) cancelButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();

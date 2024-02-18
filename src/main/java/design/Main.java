@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
-        Scene scene = new Scene(root, 1100, 700);
+        Scene scene = new Scene(root, 1100, 600);
 
         // Load the CSS file
         scene.getStylesheets().add(getClass().getResource("/ViewClub/styles.css").toExternalForm());

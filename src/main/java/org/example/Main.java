@@ -52,7 +52,11 @@ public class Main {
         //System.out.println(clubService.findByRef("CLU18"));
 
         List<Stadium> c = new ArrayList<Stadium>();
-        System.out.println(clubService.findByUser(5));
+        //System.out.println(clubService.findByUser(5));
+
+        ImageDAO id = new ImageDAO();
+
+       //System.out.println(id.findByObjectId(17,"club"));
 
         //System.out.println(c=sDAO.findAllByCLub(12));
 

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewClubController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewStadiumController">
     <top>
         <VBox alignment="CENTER_LEFT" spacing="10">
             <!-- Logo -->
@@ -47,43 +47,34 @@
     <center>
         <AnchorPane>
             <!-- Club Information Form -->
-            <TableView fx:id="clubTableView" layoutX="39.0" layoutY="50.0" prefHeight="355.0"  AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TableView fx:id="stadiumTableView" layoutX="39.0" layoutY="50.0" prefHeight="355.0"  AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                 <columns>
-                    <TableColumn fx:id="nameColumn" prefWidth="100.0" text="Name">
+                    <TableColumn fx:id="referenceColumn" prefWidth="100.0" text="Reference">
                         <cellValueFactory>
-                            <PropertyValueFactory property="name" />
+                            <PropertyValueFactory property="reference" />
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn fx:id="heightColumn" prefWidth="100.0" text="Height">
                         <cellValueFactory>
-                            <PropertyValueFactory property="Height" />
+                            <PropertyValueFactory property="height" />
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn fx:id="widthColumn" prefWidth="100.0" text="Width">
                         <cellValueFactory>
-                            <PropertyValueFactory property="Width" />
+                            <PropertyValueFactory property="width" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="startTimeColumn" prefWidth="100.0" text="Start Time">
+                    <TableColumn fx:id="priceColumn" prefWidth="100.0" text="Price">
                         <cellValueFactory>
-                            <PropertyValueFactory property="startTime" />
+                            <PropertyValueFactory property="price" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="endTimeColumn" prefWidth="100.0" text="End Time">
+                    <TableColumn fx:id="rateColumn" prefWidth="100.0" text="Rate">
                         <cellValueFactory>
-                            <PropertyValueFactory property="endTime" />
+                            <PropertyValueFactory property="rate" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="stadiumNbrColumn" prefWidth="100.0" text="stadiumNbr">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="stadiumNbr" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="descriptionColumn" prefWidth="100.0" text="Description">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="description" />
-                        </cellValueFactory>
-                    </TableColumn>
+
                     <TableColumn fx:id="actionsColumn" prefWidth="160.0" text="Actions" />
                 </columns>
             </TableView>
@@ -92,12 +83,11 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button fx:id="viewStadiumsButton" layoutX="200.0" layoutY="434.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="View Stadiums" visible="false">
+            <Button fx:id="backButton" layoutX="43.0" layoutY="434.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Return">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-
             <Button layoutX="411.0" layoutY="435.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Refresh" />
 
                <HBox layoutX="14.0" layoutY="14.0" />

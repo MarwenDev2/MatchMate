@@ -53,7 +53,7 @@
    <center>
       <AnchorPane prefHeight="636.0" prefWidth="693.0">
          <!-- Club Information Form -->
-         <Label layoutX="46.0" layoutY="27.0" styleClass="title" text="New Club Information" />
+         <Label fx:id="titleLabel" layoutX="46.0" layoutY="27.0" styleClass="title" text="New Club Information" />
          <VBox layoutX="39.0" layoutY="84.0" prefHeight="469.0" prefWidth="575.0" spacing="10">
             <HBox spacing="10">
                <Label styleClass="form-label" text="Club Name:" />

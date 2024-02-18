@@ -110,7 +110,7 @@ public class ImageDAO implements IImageDAO<Image> {
             String typeLower = type.toLowerCase();
             String firstLetterCapitalized = Character.toUpperCase(typeLower.charAt(0)) + typeLower.substring(1);
             String idObject = "id" + firstLetterCapitalized;
-            String query = "SELECT i.* FROM image i JOIN " + typeTableName + " it ON i.id = it.idImage WHERE i." + idObject + " = ?";
+            String query = "SELECT * FROM image i JOIN " + typeTableName + " it ON i.id = it.idImage WHERE it." + idObject + " = ?";
             pstmt = cnx.prepareStatement(query);
             pstmt.setInt(1, id);
             res = pstmt.executeQuery();

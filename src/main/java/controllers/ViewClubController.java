@@ -41,6 +41,8 @@ public class ViewClubController {
     private TableColumn<Club, Void> actionsColumn;
     @FXML
     private Button addButton;
+    @FXML
+    private Button viewStadiumsButton;
 
     private ClubDAO clubDAO;
     private int userId=5;
@@ -64,7 +66,7 @@ public class ViewClubController {
         addButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/NewClub/NewClub.fxml"));
-                Scene scene = new Scene(root);
+                Scene scene = new Scene(root, 900, 700);
                 Stage stage = (Stage) addButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -74,6 +76,25 @@ public class ViewClubController {
         });
 
         actionsColumn.setCellFactory(createActionCellFactory());
+
+        // Add selection listener to the table view
+        clubTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // A club is selected, show the "View stadiums" button
+                viewStadiumsButton.setVisible(true);
+            } else {
+                // No club is selected, hide the "View stadiums" button
+                viewStadiumsButton.setVisible(false);
+            }
+        });
+
+        // Set action for the "View stadiums" button
+        viewStadiumsButton.setOnAction(event -> {
+            Club selectedClub = clubTableView.getSelectionModel().getSelectedItem();
+            if (selectedClub != null) {
+                openViewStadiums(selectedClub.getId());
+            }
+        });
     }
     private Callback<TableColumn<Club, Void>, TableCell<Club, Void>> createActionCellFactory() {
         return new Callback<TableColumn<Club, Void>, TableCell<Club, Void>>() {
@@ -124,8 +145,23 @@ public class ViewClubController {
             Parent root = loader.load();
             NewClubController newClubController = loader.getController();
             newClubController.populateFieldsWithClubData(club);
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 900, 700);
             Stage stage = (Stage) addButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openViewStadiums(int clubId) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ViewStadium/ViewStadium.fxml"));
+            Parent root = loader.load();
+            ViewStadiumController viewStadiumController = loader.getController();
+            viewStadiumController.setClubId(clubId); // Pass the selected club's ID
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

@@ -2,20 +2,32 @@ package controllers;
 
 import entities.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import services.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class NewStadiumController {
 
+    @FXML
+    private Label titleLabel;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button backButton;
     @FXML
     private TextField stadiumNameField;
     @FXML
@@ -27,36 +39,79 @@ public class NewStadiumController {
     @FXML
     private TextField rateField;
     @FXML
-    private TextArea descriptionArea;
-    @FXML
     private FlowPane imageFlowPane;
 
-    private ImageDAO imageDAO;
+    private ImageStadiumDAO imageS;
     private StadiumDAO stadiumDAO;
+    private ImageStadiumDAO imageDAO;
     private ClubDAO cl;
+    private Club c;
+    private Stadium s;
+    private int idClub;
+    private String stadiumRef;
+
     private List<Image> uploadedImages;
 
-    public NewStadiumController() {
-        imageDAO = new ImageDAO();
+
+    @FXML
+    public void initialize() throws IOException {
+        imageS = new ImageStadiumDAO();
         stadiumDAO = new StadiumDAO();
         cl = new ClubDAO();
         uploadedImages = new ArrayList<>();
+
+
+        idClub=SharedData.getClubId();
+        c=cl.findById(idClub);
+        stadiumRef = c.getName().substring(0, Math.min(c.getName().length(), 3)).toUpperCase();
+        Random random = new Random();
+        int randomNumber = random.nextInt(1000);
+        stadiumRef = stadiumRef + randomNumber;
+        stadiumNameField.setText(stadiumRef);
+
+
+        // Set event handler for back button
+        backButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/ViewStadium/ViewStadium.fxml"));
+                Scene scene = new Scene(root, 1000, 600);
+                Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
-    @FXML
-    public void initialize() {
-        // Initialize the form
+    public void populateFieldsWithStadium(String ref) {
+        ImageStadiumDAO imo = new ImageStadiumDAO();
+        s = stadiumDAO.findById(ref);
+        heightField.setText(String.valueOf(s.getHeight()));
+        widthField.setText(String.valueOf(s.getWidth()));
+        priceField.setText((String.valueOf(s.getPrice())));
+        rateField.setText(String.valueOf(s.getRate()));
+
+
+        List<Image> images = imo.findByIDStadium(s.getReference(),"stadium");
+        for (Image image : images) {
+            addImageToFlowPane(image);
+        }
+        titleLabel.setText("Change your Stadium");
+        saveButton.setText("Update");
     }
+
 
     @FXML
     public void saveStadium() {
-        String name = stadiumNameField.getText();
+
+        String reference = stadiumNameField.getText();
         String heightText = heightField.getText();
         String widthText = widthField.getText();
         String priceText = priceField.getText();
         String rateText = rateField.getText();
 
-        if (name.isEmpty() || heightText.isEmpty() || widthText.isEmpty() || priceText.isEmpty() || rateText.isEmpty()) {
+        if ( heightText.isEmpty() || widthText.isEmpty() || priceText.isEmpty() || rateText.isEmpty()) {
             showAlert("Error", "All fields are required.", Alert.AlertType.ERROR);
             return;
         }
@@ -74,22 +129,20 @@ public class NewStadiumController {
             return;
         }
 
-        Club c = cl.findById(18);
+        Stadium stadium = new Stadium(reference,c, height, width, price, rate);
 
-        Stadium stadium = new Stadium(c, height, width, price, rate);
-
-        int stadiumId = stadiumDAO.save(stadium);
-        if (stadiumId != 0) {
-            showAlert("Success", "Stadium added successfully with ID: " + stadiumId, Alert.AlertType.INFORMATION);
-            saveImagesToDatabase(stadiumId); // Save uploaded images to the database
+        String stadiumName = stadiumDAO.save(stadium);
+        if (stadiumName != null) {
+            showAlert("Success", "Stadium added successfully with Reference: " + stadiumName, Alert.AlertType.INFORMATION);
+            saveImagesToDatabase(stadiumName); // Save uploaded images to the database
             clearFields();
         } else {
             showAlert("Error", "Failed to add stadium.", Alert.AlertType.ERROR);
         }
     }
-    private void saveImagesToDatabase(int clubId) {
+    private void saveImagesToDatabase(String ref) {
         for (Image image : uploadedImages) {
-            imageDAO.save(image, clubId);
+            imageS.save(image,ref);
         }
     }
     @FXML
@@ -106,7 +159,7 @@ public class NewStadiumController {
                 String url = file.toURI().toString(); // Get the file URL
                 //String[] splitName = name.split("\\."); // Split the file name to get the extension
                 //String type = splitName[splitName.length - 1]; // Get the file extension
-                String type = "club";
+                String type = "stadium";
 
                 // Create an instance of your Image class
                 Image image = new Image(name, url, type);

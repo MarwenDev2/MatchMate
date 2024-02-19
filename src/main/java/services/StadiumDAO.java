@@ -11,61 +11,37 @@ public class StadiumDAO implements IStadiumDAO<Stadium>{
     static Connection cnx = Connexion.getInstance();
     ClubDAO clubDAO = new ClubDAO();
 
-    public int save(Stadium s) {
+    public String save(Stadium s) {
         if (s == null)
-            return -1;
+            return null;
         int n = 0;
         PreparedStatement pstmt = null;
-        ResultSet generatedKeys = null;
 
         try {
             pstmt = cnx.prepareStatement(
-                    "insert into stadium(reference,idClub,height,width,price,rate) values (?,?,?,?,?,?)",
-                    Statement.RETURN_GENERATED_KEYS);
-            String stadiumRef = s.getClub().getName().substring(0, Math.min(s.getClub().getName().length(), 3)).toUpperCase();
-            Random random = new Random();
-            int randomNumber = random.nextInt(1000);
-            stadiumRef = stadiumRef + randomNumber;
-            pstmt.setString(1, stadiumRef);
+                    "insert into stadium(reference,idClub,height,width,price,rate) values (?,?,?,?,?,?)");
+            pstmt.setString(1, s.getReference());
             pstmt.setInt(2, s.getClub().getId());
             pstmt.setFloat(3, s.getHeight());
             pstmt.setFloat(4, s.getWidth());
             pstmt.setInt(5, s.getPrice());
             pstmt.setInt(6, s.getRate());
-            Club c =clubDAO.findById(s.getClub().getId());
-            c.setStadiumNbr(c.getStadiumNbr()+1);
+            Club c = clubDAO.findById(s.getClub().getId());
+            c.setStadiumNbr(c.getStadiumNbr() + 1);
             n = pstmt.executeUpdate();
             if (n == 1) {
-                // Retrieve the auto-generated keys
-                generatedKeys = pstmt.getGeneratedKeys();
-
-                if (generatedKeys.next()) {
-                    int stadiumId = generatedKeys.getInt(1); // Retrieve the auto-generated club ID
-                    System.out.println("The stadium has been added with ID: " + stadiumId);
-                    clubDAO.update(c);
-                    return stadiumId; // Return the generated club ID
-                } else {
-                    System.out.println("Failed to retrieve stadium ID");
-                    return -1; // Return -1 if club ID retrieval fails
-                }
+                System.out.println("The stadium has been added with Reference: " + s.getReference());
+                clubDAO.update(c);
+                return s.getReference();
             } else {
                 System.out.println("No stadium has been added");
-                return -1; // Return -1 to indicate failure
+                return null;
             }
-
         } catch (SQLException e1) {
-            System.out.println("the" + s.getReference() + "stadium addition was failed" + e1.getMessage());
-            return -1;
-        }
-        finally {
+            System.out.println("The " + s.getReference() + " stadium addition failed: " + e1.getMessage());
+            return null;
+        } finally {
             // Close resources
-            if (generatedKeys != null) {
-                try {
-                    generatedKeys.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
             if (pstmt != null) {
                 try {
                     pstmt.close();
@@ -75,6 +51,7 @@ public class StadiumDAO implements IStadiumDAO<Stadium>{
             }
         }
     }
+
 
     public boolean update(Stadium s) {
         if (s == null)
@@ -179,8 +156,8 @@ public class StadiumDAO implements IStadiumDAO<Stadium>{
             pstmt.setInt(1, idClub);
             ResultSet res = pstmt.executeQuery();
             while (res.next()) {
-                Club cl  = clubDAO.findById(res.getInt(1));
-                c.add(new Stadium(res.getString(1),cl,res.getFloat(10),res.getFloat(11),res.getInt(12),res.getInt(13)));
+                Club cl  = clubDAO.findById(idClub);
+                c.add(new Stadium(res.getString(10),cl,res.getFloat(12),res.getFloat(13),res.getInt(14),res.getInt(15)));
             }
             pstmt.close();
         } catch (Exception e) {

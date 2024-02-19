@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Club;
 import entities.Stadium;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,15 +8,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import services.StadiumDAO;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewStadiumController {
@@ -25,20 +26,23 @@ public class ViewStadiumController {
     @FXML
     private TableColumn<Stadium, String> referenceColumn;
     @FXML
-    private TableColumn<Stadium, Double> heightColumn;
+    private TableColumn<Stadium, Float> heightColumn;
     @FXML
-    private TableColumn<Stadium, Double> widthColumn;
+    private TableColumn<Stadium, Float> widthColumn;
     @FXML
-    private TableColumn<Stadium, Double> priceColumn;
+    private TableColumn<Stadium, Float> priceColumn;
     @FXML
     private TableColumn<Stadium, Integer> rateColumn;
+    @FXML
+    private TableColumn<Stadium, Void> actionsColumn;
     @FXML
     private Button backButton;
     @FXML
     private Button addButton;
 
     private StadiumDAO stadiumDAO;
-    int clubId;
+    List<Stadium> stadiums;
+    private int clubId;
     public int getClubId() {
         return clubId;
     }
@@ -48,9 +52,14 @@ public class ViewStadiumController {
 
     public ViewStadiumController() {
         stadiumDAO = new StadiumDAO();
+        List<Stadium> stadiums = new ArrayList<>();
     }
 
+
+
+    @FXML
     public void initialize() {
+        clubId = SharedData.getClubId();
         // Load stadiums data
         loadStadiums();
 
@@ -61,11 +70,25 @@ public class ViewStadiumController {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         rateColumn.setCellValueFactory(new PropertyValueFactory<>("rate"));
 
+        actionsColumn.setCellFactory(createActionCellFactory());
+
+        addButton.setOnAction(event -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/NewStadium/NewStadium.fxml"));
+                Scene scene = new Scene(root, 1000, 600);
+                Stage stage = (Stage) addButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
         // Set event handler for back button
         backButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
-                Scene scene = new Scene(root, 900, 700);
+                Scene scene = new Scene(root, 1000, 600);
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -73,10 +96,65 @@ public class ViewStadiumController {
                 e.printStackTrace();
             }
         });
+
+
+    }
+    private void loadStadiums() {
+        stadiums = stadiumDAO.findAllByClub(clubId);
+        stadiumTableView.getItems().addAll(stadiums);
+        System.out.println(stadiums);
     }
 
-    private void loadStadiums() {
-        List<Stadium> stadiums = stadiumDAO.findAllByClub(clubId);
-        stadiumTableView.getItems().addAll(stadiums);
+    private Callback<TableColumn<Stadium, Void>, TableCell<Stadium, Void>> createActionCellFactory() {
+        return new Callback<TableColumn<Stadium, Void>, TableCell<Stadium, Void>>() {
+            @Override
+            public TableCell<Stadium, Void> call(TableColumn<Stadium, Void> param) {
+                return new TableCell<>() {
+                    private final Button editButton = new Button("Edit");
+                    private final Button deleteButton = new Button("Delete");
+
+                    {
+                        editButton.setOnAction(event -> {
+                            Stadium s = getTableView().getItems().get(getIndex());
+                            editStadium(s);
+                        });
+
+                        deleteButton.setOnAction(event -> {
+                            Stadium s = getTableView().getItems().get(getIndex());
+                            deleteStadium(s);
+                        });
+                    }
+
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(new HBox(editButton, deleteButton));
+                        }
+                    }
+                };
+            }
+        };
     }
+
+    private void deleteStadium(Stadium stadium){
+
+    }
+    private void editStadium(Stadium stadium) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/NewStadium/NewStadium.fxml"));
+            Parent root = loader.load();
+            NewStadiumController newStadiumController = loader.getController();
+            newStadiumController.populateFieldsWithStadium(stadium.getReference());
+            Scene scene = new Scene(root, 900, 700);
+            Stage stage = (Stage) addButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

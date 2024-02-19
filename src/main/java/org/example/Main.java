@@ -55,10 +55,12 @@ public class Main {
         //System.out.println(clubService.findByUser(5));
 
         ImageDAO id = new ImageDAO();
+        ImageStadiumDAO is = new ImageStadiumDAO();
 
        //System.out.println(id.findByObjectId(17,"club"));
-
-        //System.out.println(c=sDAO.findAllByCLub(12));
+        c=sDAO.findAllByClub(18);
+        //System.out.println(c);
+        System.out.println(is.findByIDStadium("CSS135","stadium"));
 
         Reservation r = new Reservation(u1,newStadium,Date.valueOf("2001-04-04"),new Time(14,30,00),new Time(15,30,00),"assigned");
 

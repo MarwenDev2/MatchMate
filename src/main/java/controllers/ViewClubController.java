@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -74,9 +71,7 @@ public class ViewClubController {
                 e.printStackTrace();
             }
         });
-
         actionsColumn.setCellFactory(createActionCellFactory());
-
         // Add selection listener to the table view
         clubTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -87,7 +82,6 @@ public class ViewClubController {
                 viewStadiumsButton.setVisible(false);
             }
         });
-
         // Set action for the "View stadiums" button
         viewStadiumsButton.setOnAction(event -> {
             Club selectedClub = clubTableView.getSelectionModel().getSelectedItem();
@@ -131,7 +125,36 @@ public class ViewClubController {
     }
 
     private void deleteClub(Club club) {
-        // Implement delete functionality here
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText("Confirm Delete");
+        confirmationAlert.setContentText("Are you sure you want to delete the club?");
+
+        // Add OK and Cancel buttons to the confirmation dialog
+        confirmationAlert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+
+        // Show the confirmation dialog and wait for user input
+        confirmationAlert.showAndWait().ifPresent(buttonType -> {
+            if (buttonType == ButtonType.OK) {
+                // User clicked OK, proceed with deletion
+                boolean isDeleted = clubDAO.delete(club);
+                if (isDeleted) {
+                    // Remove the deleted club from the table view
+                    clubTableView.getItems().remove(club);
+                    showAlert("Success", "Club deleted successfully.", Alert.AlertType.INFORMATION);
+                } else {
+                    showAlert("Error", "Failed to delete club.", Alert.AlertType.ERROR);
+                }
+            }
+        });
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void populateTableView() {
@@ -156,12 +179,11 @@ public class ViewClubController {
 
     private void openViewStadiums(int clubId) {
         try {
+            SharedData.setClubId(clubId);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ViewStadium/ViewStadium.fxml"));
             Parent root = loader.load();
-            ViewStadiumController viewStadiumController = loader.getController();
-            viewStadiumController.setClubId(clubId); // Pass the selected club's ID
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
+            Scene scene = new Scene(root) ;
+            Stage stage = (Stage) viewStadiumsButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -169,41 +191,4 @@ public class ViewClubController {
         }
     }
 
-    private Callback<TableColumn<Club, Void>, TableCell<Club, Void>> createActionsCellFactory() {
-        return new Callback<TableColumn<Club, Void>, TableCell<Club, Void>>() {
-            @Override
-            public TableCell<Club, Void> call(TableColumn<Club, Void> param) {
-                return new TableCell<Club, Void>() {
-                    private final Button editButton = new Button("Edit");
-                    private final Button deleteButton = new Button("Delete");
-
-                    {
-                        // Handle edit button action
-                        editButton.setOnAction(event -> {
-                            // Get the Club object associated with this row
-                            Club club = getTableView().getItems().get(getIndex());
-                            // Implement edit action here...
-                        });
-
-                        // Handle delete button action
-                        deleteButton.setOnAction(event -> {
-                            // Get the Club object associated with this row
-                            Club club = getTableView().getItems().get(getIndex());
-                            // Implement delete action here...
-                        });
-                    }
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            // Set buttons as graphic if the row is not empty
-                            setGraphic(new HBox(editButton, deleteButton));
-                        }
-                    }
-                };
-            }
-        };
-    }
 }

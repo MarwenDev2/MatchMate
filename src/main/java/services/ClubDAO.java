@@ -88,7 +88,7 @@ public class ClubDAO implements IClubDAO<Club>{
             pstmt.setFloat(3, c.getWidth());
             pstmt.setTime(4, c.getStartTime());
             pstmt.setTime(5, c.getEndTime());
-            pstmt.setInt(6, 0);
+            pstmt.setInt(6, c.getStadiumNbr());
             pstmt.setString(7, c.getDescription());
             pstmt.setInt(8, c.getUser().getId());
             pstmt.setInt(9, c.getId());

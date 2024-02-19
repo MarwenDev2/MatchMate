@@ -4,7 +4,7 @@ package services;
 import java.util.List;
 
 public interface IStadiumDAO <T> {
-    public int save(T t);
+    public String save(T t);
 
     public boolean update(T t);
 

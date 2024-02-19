@@ -17,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.ClubDAO;
 import services.ImageDAO;
+import services.ImageStadiumDAO;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,8 +60,10 @@ public class NewClubController {
 
     private ClubDAO clubDAO;
     private ImageDAO imageDAO;
-    private int idClub=0;
+    private Club C;
     private List<Image> uploadedImages; // Keep track of uploaded images
+
+
 
     public NewClubController() {
         clubDAO = new ClubDAO();
@@ -84,7 +87,6 @@ public class NewClubController {
         endHourComboBox.setItems(hoursList);
         startMinuteComboBox.setItems(minutesList);
         endMinuteComboBox.setItems(minutesList);
-
         viewClubsButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
@@ -100,6 +102,7 @@ public class NewClubController {
 
     public void populateFieldsWithClubData(Club club) {
         int idC = club.getId();
+        C = club;
         clubNameField.setText(club.getName());
         heightField.setText(String.valueOf(club.getHeight()));
         widthField.setText(String.valueOf(club.getWidth()));
@@ -118,16 +121,16 @@ public class NewClubController {
 
         List<Image> images = imageDAO.findByObjectId(idC,"club");
         for (Image image : images) {
-            ImageView imageView = new ImageView(image.getUrl());
-            imageView.setFitWidth(100);
-            imageView.setFitHeight(100);
-            imageFlowPane.getChildren().add(imageView);
+            addImageToFlowPane(image);
         }
         titleLabel.setText("Change your Club");
         saveButton.setText("Update");
+
+
     }
     @FXML
     public void saveClub() {
+
         String name = clubNameField.getText();
         String description = descriptionArea.getText();
         String heightText = heightField.getText();
@@ -158,17 +161,41 @@ public class NewClubController {
 
         Time startTime = new Time(startHour, startMinute, 0);
         Time endTime = new Time(endHour, endMinute, 0);
-        User u = new User();
-        u.setId(5);
-        Club club = new Club(u,name, height, width, startTime, endTime,0, description);
 
-        this.idClub = clubDAO.save(club);
-        if (this.idClub != 0) {
-            showAlert("Success", "Club added successfully with ID: " + this.idClub, Alert.AlertType.INFORMATION);
-            saveImagesToDatabase(this.idClub); // Save uploaded images to the database
-            clearFields();
+
+        Club Club3 = new Club();
+        Club3.setName(name);
+        Club3.setEndTime(endTime);
+        Club3.setStartTime(startTime);
+        Club3.setDescription(description);
+        Club3.setHeight(height);
+        Club3.setWidth(width);
+        Club3.setStadiumNbr(0);
+        User u1 = new User();
+        u1.setId(5);
+        Club3.setUser(u1);
+
+        if (titleLabel.getText().equals("Change your Club")) {
+            Club3.setId(C.getId());
+            System.out.println(C.getId());
+            if (clubDAO.update(Club3)) {
+                showAlert("Success", "Club updated successfully.", Alert.AlertType.INFORMATION);
+                saveImagesToDatabase(C.getId()); // Save uploaded images to the database
+                redirectToViewClub();
+            } else {
+                showAlert("Error", "Failed to update club.", Alert.AlertType.ERROR);
+            }
         } else {
-            showAlert("Error", "Failed to add club.", Alert.AlertType.ERROR);
+            // Save new club
+
+            int idClub = clubDAO.save(Club3);
+            if (idClub != 0) {
+                showAlert("Success", "Club added successfully with ID: " + idClub, Alert.AlertType.INFORMATION);
+                saveImagesToDatabase(idClub); // Save uploaded images to the database
+                redirectToViewClub();
+            } else {
+                showAlert("Error", "Failed to add club.", Alert.AlertType.ERROR);
+            }
         }
     }
     private void saveImagesToDatabase(int clubId) {
@@ -228,6 +255,7 @@ public class NewClubController {
             }
         });
     }
+
     private void showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -240,9 +268,18 @@ public class NewClubController {
         removeButton.setOnAction(event -> {
             uploadedImages.remove(image);
             imageFlowPane.getChildren().remove(imageBox);
+
+            // Determine the type of image (e.g., "club" or "stadium")
+            String type = image.getType();
+
+            // Call the appropriate DAO to delete the image from the database
+            if(titleLabel.getText().equals("Change your Club"))
+            imageDAO.delete(image);
+
         });
         return removeButton;
     }
+
     private void addImageToFlowPane(Image image) {
         ImageView imageView = new ImageView(image.getUrl());
         imageView.setFitWidth(100);
@@ -257,6 +294,18 @@ public class NewClubController {
 
         imageBox.getChildren().add(removeButton); // Add the remove button to the HBox
         imageFlowPane.getChildren().add(imageBox); // Add the HBox to the imageFlowPane
+    }
+
+    private void redirectToViewClub() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
+            Scene scene = new Scene(root, 1100, 600);
+            Stage stage = (Stage) saveButton.getScene().getWindow(); // Assuming saveButton is present in NewClub.fxml
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewStadiumController">
     <top>
         <VBox alignment="CENTER_LEFT" spacing="10">
@@ -47,7 +47,7 @@
     <center>
         <AnchorPane>
             <!-- Club Information Form -->
-            <TableView fx:id="stadiumTableView" layoutX="39.0" layoutY="50.0" prefHeight="355.0"  AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TableView fx:id="stadiumTableView" layoutX="39.0" layoutY="50.0" prefHeight="355.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                 <columns>
                     <TableColumn fx:id="referenceColumn" prefWidth="100.0" text="Reference">
                         <cellValueFactory>
@@ -74,7 +74,6 @@
                             <PropertyValueFactory property="rate" />
                         </cellValueFactory>
                     </TableColumn>
-
                     <TableColumn fx:id="actionsColumn" prefWidth="160.0" text="Actions" />
                 </columns>
             </TableView>
@@ -83,12 +82,11 @@
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button fx:id="backButton" layoutX="43.0" layoutY="434.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Return">
+            <Button fx:id="backButton" layoutX="240.0" layoutY="434.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Return">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button layoutX="411.0" layoutY="435.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Refresh" />
 
                <HBox layoutX="14.0" layoutY="14.0" />
         </AnchorPane>

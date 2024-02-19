@@ -58,7 +58,7 @@ public class ImageStadiumDAO implements IImageStadiumDAO<Image>{
         PreparedStatement pstmt = null;
         try {
             pstmt = cnx.prepareStatement(
-                    "INSERT INTO imagestadium, idImage) VALUES (?, ?)");
+                    "INSERT INTO imagestadium(refStadium, idImage) VALUES (?, ?)");
             pstmt.setString(1, ref);
             pstmt.setInt(2, imageId);
             int result = pstmt.executeUpdate();
@@ -79,7 +79,7 @@ public class ImageStadiumDAO implements IImageStadiumDAO<Image>{
             String typeLower = type.toLowerCase();
             String firstLetterCapitalized = Character.toUpperCase(typeLower.charAt(0)) + typeLower.substring(1);
             String idObject = "id" + firstLetterCapitalized;
-            String query = "SELECT i.* FROM image i JOIN " + typeTableName + " it ON i.id = it.idImage WHERE i.refStadium = ?";
+            String query = "SELECT i.* FROM image i JOIN " + typeTableName + " it ON i.id = it.idImage WHERE it.refStadium = ?";
             pstmt = cnx.prepareStatement(query);
             pstmt.setString(1, ref);
             res = pstmt.executeQuery();

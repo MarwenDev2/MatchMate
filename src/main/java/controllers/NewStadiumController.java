@@ -69,7 +69,6 @@ public class NewStadiumController {
         stadiumRef = stadiumRef + randomNumber;
         stadiumNameField.setText(stadiumRef);
 
-
         // Set event handler for back button
         backButton.setOnAction(event -> {
             try {
@@ -82,6 +81,9 @@ public class NewStadiumController {
                 e.printStackTrace();
             }
         });
+    }
+    public void hello(){
+        return;
     }
 
     public void populateFieldsWithStadium(String ref) {

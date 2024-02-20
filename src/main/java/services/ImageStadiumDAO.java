@@ -102,4 +102,30 @@ public class ImageStadiumDAO implements IImageStadiumDAO<Image>{
         }
         return images;
     }
+
+    public boolean delete(Image i) {
+        if (i == null)
+            return false;
+        Connection cnx = Connexion.getInstance();
+        PreparedStatement pstmt = null;
+        int n = 0;
+        try {
+            pstmt = cnx.prepareStatement("delete from image where id =?");
+            pstmt.setInt(1, i.getId());
+            n = pstmt.executeUpdate();
+            pstmt.close();
+            if (n == 1) {
+                System.out.println("image removale was succeded good");
+                return true;
+            } else {
+                System.out.println("no image was deleted");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.out.println("wrong compilation of the reqeute");
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

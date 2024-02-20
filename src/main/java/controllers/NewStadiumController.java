@@ -130,6 +130,27 @@ public class NewStadiumController {
         }
 
         Stadium stadium = new Stadium(reference,c, height, width, price, rate);
+        if (titleLabel.getText().equals("Change your Stadium")) {
+
+            if (stadiumDAO.update(stadium)) {
+                showAlert("Success", "Stadium updated successfully.", Alert.AlertType.INFORMATION);
+                saveImagesToDatabase(stadiumRef); // Save uploaded images to the database
+                redirectToViewStadium();
+            } else {
+                showAlert("Error", "Failed to update club.", Alert.AlertType.ERROR);
+            }
+        } else {
+            // Save new club
+
+            String m = stadiumDAO.save(stadium);
+            if (m!=null) {
+                showAlert("Success", "Club added successfully with ID: " + idClub, Alert.AlertType.INFORMATION);
+                saveImagesToDatabase(reference); // Save uploaded images to the database
+                redirectToViewStadium();
+            } else {
+                showAlert("Error", "Failed to add club.", Alert.AlertType.ERROR);
+            }
+        }
 
         String stadiumName = stadiumDAO.save(stadium);
         if (stadiumName != null) {
@@ -169,6 +190,18 @@ public class NewStadiumController {
         }
     }
 
+    private void redirectToViewStadium() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/ViewStadium/ViewStadium.fxml"));
+            Scene scene = new Scene(root, 1100, 600);
+            Stage stage = (Stage) saveButton.getScene().getWindow(); // Assuming saveButton is present in NewClub.fxml
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void clear() {
         clearFields();
@@ -200,6 +233,14 @@ public class NewStadiumController {
         removeButton.setOnAction(event -> {
             uploadedImages.remove(image);
             imageFlowPane.getChildren().remove(imageBox);
+
+            // Determine the type of image (e.g., "club" or "stadium")
+            String type = image.getType();
+
+            // Call the appropriate DAO to delete the image from the database
+            if(titleLabel.getText().equals("Change your Club"))
+                imageS.delete(image);
+
         });
         return removeButton;
     }

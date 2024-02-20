@@ -53,14 +53,21 @@ public class Main {
 
         List<Stadium> c = new ArrayList<Stadium>();
         //System.out.println(clubService.findByUser(5));
+        System.out.println(clubService.findById(18));
 
         ImageDAO id = new ImageDAO();
         ImageStadiumDAO is = new ImageStadiumDAO();
 
        //System.out.println(id.findByObjectId(17,"club"));
         c=sDAO.findAllByClub(18);
+        Stadium s1 = sDAO.findById("CSS135");
+        System.out.println(s1);
+        s1.setRate(6);
+        sDAO.update(s1);
+        System.out.println(s1);
+
         //System.out.println(c);
-        System.out.println(is.findByIDStadium("CSS135","stadium"));
+       // System.out.println(is.findByIDStadium("CSS135","stadium"));
 
         Reservation r = new Reservation(u1,newStadium,Date.valueOf("2001-04-04"),new Time(14,30,00),new Time(15,30,00),"assigned");
 

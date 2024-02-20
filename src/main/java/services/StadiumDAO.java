@@ -103,33 +103,7 @@ public class StadiumDAO implements IStadiumDAO<Stadium>{
         return s;
     }
 
-    public boolean delete(Stadium s) {
-        if (s == null)
-            return false;
-        PreparedStatement pstmt = null;
-        int n = 0;
-        try {
-            pstmt = cnx.prepareStatement("delete from stadium where reference =?");
-            pstmt.setString(1, s.getReference());
-            n = pstmt.executeUpdate();
-            pstmt.close();
-            Club c =clubDAO.findById(s.getClub().getId());
-            c.setStadiumNbr(c.getStadiumNbr()-1);
-            if (n == 1) {
-                clubDAO.update(c);
-                System.out.println("stadium removale was succeded");
-                return true;
-            } else {
-                System.out.println("no stadium was deleted");
-                return false;
-            }
 
-        } catch (Exception e) {
-            System.out.println("wrong compilation of the reqeute");
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     public List<Stadium> findAll() {
         List<Stadium> c = new ArrayList<Stadium>();
@@ -168,5 +142,33 @@ public class StadiumDAO implements IStadiumDAO<Stadium>{
 
     }
 
+
+    public boolean delete(Stadium s) {
+        if (s == null)
+            return false;
+        PreparedStatement pstmt = null;
+        int n = 0;
+        try {
+            pstmt = cnx.prepareStatement("delete from stadium where reference =?");
+            pstmt.setString(1, s.getReference());
+            n = pstmt.executeUpdate();
+            pstmt.close();
+            Club c =clubDAO.findById(s.getClub().getId());
+            c.setStadiumNbr(c.getStadiumNbr()-1);
+            if (n == 1) {
+                clubDAO.update(c);
+                System.out.println("stadium removale was succeded");
+                return true;
+            } else {
+                System.out.println("no stadium was deleted");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.out.println("wrong compilation of the reqeute");
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }

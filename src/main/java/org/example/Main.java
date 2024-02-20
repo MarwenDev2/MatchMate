@@ -20,7 +20,7 @@ public class Main {
         ReservationDAO rDAO = new ReservationDAO();
 
         int userId = 4; // Assuming user ID 1 is the owner
-
+        Date currentDate = new Date(Calendar.getInstance().getTime().getTime());
 
         // Create a new club
        Club newClub = new Club();
@@ -49,6 +49,7 @@ public class Main {
         //System.out.println(clubService.save(newClub));
         //sDAO.save(newStadium);
 
+
         //System.out.println(clubService.findByRef("CLU18"));
 
         List<Stadium> c = new ArrayList<Stadium>();
@@ -63,8 +64,8 @@ public class Main {
         Stadium s1 = sDAO.findById("CSS135");
         System.out.println(s1);
         s1.setRate(6);
-        sDAO.update(s1);
-        System.out.println(s1);
+        //sDAO.update(s1);
+        //System.out.println(s1);
 
         //System.out.println(c);
        // System.out.println(is.findByIDStadium("CSS135","stadium"));

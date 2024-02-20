@@ -89,6 +89,7 @@ public class NewStadiumController {
     public void populateFieldsWithStadium(String ref) {
         ImageStadiumDAO imo = new ImageStadiumDAO();
         s = stadiumDAO.findById(ref);
+        stadiumNameField.setText(String.valueOf(s.getReference()));
         heightField.setText(String.valueOf(s.getHeight()));
         widthField.setText(String.valueOf(s.getWidth()));
         priceField.setText((String.valueOf(s.getPrice())));
@@ -152,15 +153,6 @@ public class NewStadiumController {
             } else {
                 showAlert("Error", "Failed to add club.", Alert.AlertType.ERROR);
             }
-        }
-
-        String stadiumName = stadiumDAO.save(stadium);
-        if (stadiumName != null) {
-            showAlert("Success", "Stadium added successfully with Reference: " + stadiumName, Alert.AlertType.INFORMATION);
-            saveImagesToDatabase(stadiumName); // Save uploaded images to the database
-            clearFields();
-        } else {
-            showAlert("Error", "Failed to add stadium.", Alert.AlertType.ERROR);
         }
     }
     private void saveImagesToDatabase(String ref) {

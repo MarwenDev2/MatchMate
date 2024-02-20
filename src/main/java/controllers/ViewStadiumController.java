@@ -139,9 +139,6 @@ public class ViewStadiumController {
         };
     }
 
-    private void deleteStadium(Stadium stadium){
-
-    }
     private void editStadium(Stadium stadium) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/NewStadium/NewStadium.fxml"));
@@ -156,5 +153,37 @@ public class ViewStadiumController {
             e.printStackTrace();
         }
     }
+    private void deleteStadium(Stadium stadium){
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText("Confirm Delete");
+        confirmationAlert.setContentText("Are you sure you want to delete the stadium ?");
+
+        // Add OK and Cancel buttons to the confirmation dialog
+        confirmationAlert.getButtonTypes().setAll(ButtonType.OK, ButtonType.CANCEL);
+
+        // Show the confirmation dialog and wait for user input
+        confirmationAlert.showAndWait().ifPresent(buttonType -> {
+            if (buttonType == ButtonType.OK) {
+                // User clicked OK, proceed with deletion
+                boolean isDeleted = stadiumDAO.delete(stadium);
+                if (isDeleted) {
+                    // Remove the deleted club from the table view
+                    stadiumTableView.getItems().remove(stadium);
+                    showAlert("Success", "Stadium deleted successfully.", Alert.AlertType.INFORMATION);
+                } else {
+                    showAlert("Error", "Failed to delete stadium.", Alert.AlertType.ERROR);
+                }
+            }
+        });
+    }
+    private void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 }

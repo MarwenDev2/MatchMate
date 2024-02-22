@@ -36,9 +36,9 @@ public class NewClubController {
     @FXML
     private Button clearButton;
     @FXML
-    private Button viewClubsButton;
+    private Label viewClubsButton;
     @FXML
-    private Button reservationsButton;
+    private Label reservationsButton;
     @FXML
     private TextField clubNameField;
     @FXML
@@ -87,10 +87,11 @@ public class NewClubController {
         endHourComboBox.setItems(hoursList);
         startMinuteComboBox.setItems(minutesList);
         endMinuteComboBox.setItems(minutesList);
-        viewClubsButton.setOnAction(event -> {
+
+        viewClubsButton.setOnMouseClicked(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
-                Scene scene = new Scene(root, 1100, 600);
+                Scene scene = new Scene(root, 1180.0, 655.0);
                 Stage stage = (Stage) viewClubsButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -98,6 +99,8 @@ public class NewClubController {
                 e.printStackTrace();
             }
         });
+
+
     }
 
     public void populateFieldsWithClubData(Club club) {
@@ -135,18 +138,36 @@ public class NewClubController {
         String description = descriptionArea.getText();
         String heightText = heightField.getText();
         String widthText = widthField.getText();
-        int startHour = startHourComboBox.getValue();
-        int startMinute = startMinuteComboBox.getValue();
-        int endHour = endHourComboBox.getValue();
-        int endMinute = endMinuteComboBox.getValue();
+        Integer startHour = startHourComboBox.getValue();
+        Integer startMinute = startMinuteComboBox.getValue();
+        Integer endHour = endHourComboBox.getValue();
+        Integer endMinute = endMinuteComboBox.getValue();
 
+
+        // 1. Empty Field Check
         if (name.isEmpty() || description.isEmpty() || heightText.isEmpty() || widthText.isEmpty()) {
             showAlert("Error", "All fields are required.", Alert.AlertType.ERROR);
             return;
         }
+        // Check for empty or not selected values in ComboBoxes
+        if (startHour == null || startMinute == null || endHour == null || endMinute == null) {
+            showAlert("Error", "Please select start and end times.", Alert.AlertType.ERROR);
+            return;
+        } else {
+            int startTotalMinutes = startHour * 60 + startMinute;
+            int endTotalMinutes = endHour * 60 + endMinute;
+
+            int timeDifference = endTotalMinutes - startTotalMinutes;
+
+            if (timeDifference < 120) {
+                showAlert("Error", "There must be a minimum of 2 hours between the start and end times.", Alert.AlertType.ERROR);
+                return;
+            }
+        }
 
         float height, width;
         try {
+            // 2. Numeric Value Check
             height = Float.parseFloat(heightText);
             width = Float.parseFloat(widthText);
         } catch (NumberFormatException e) {
@@ -154,6 +175,7 @@ public class NewClubController {
             return;
         }
 
+        // 3. Start Time vs End Time Check
         if (startHour > endHour || (startHour == endHour && startMinute >= endMinute)) {
             showAlert("Error", "Start time must be before end time.", Alert.AlertType.ERROR);
             return;
@@ -161,7 +183,6 @@ public class NewClubController {
 
         Time startTime = new Time(startHour, startMinute, 0);
         Time endTime = new Time(endHour, endMinute, 0);
-
 
         Club Club3 = new Club();
         Club3.setName(name);
@@ -198,6 +219,7 @@ public class NewClubController {
             }
         }
     }
+
     private void saveImagesToDatabase(int clubId) {
         for (Image image : uploadedImages) {
             imageDAO.save(image, clubId);
@@ -246,7 +268,7 @@ public class NewClubController {
         cancelButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
-                Scene scene = new Scene(root, 1000, 600);
+                Scene scene = new Scene(root, 1180.0, 655.0);
                 Stage stage = (Stage) cancelButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -299,7 +321,7 @@ public class NewClubController {
     private void redirectToViewClub() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
-            Scene scene = new Scene(root, 1100, 600);
+            Scene scene = new Scene(root, 1180.0, 655.0);
             Stage stage = (Stage) saveButton.getScene().getWindow(); // Assuming saveButton is present in NewClub.fxml
             stage.setScene(scene);
             stage.show();
@@ -307,5 +329,6 @@ public class NewClubController {
             e.printStackTrace();
         }
     }
+
 
 }

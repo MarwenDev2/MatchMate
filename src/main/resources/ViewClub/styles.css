@@ -1,3 +1,7 @@
+.gradiant-background{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #4CAF50,#666666);
+}
+
 .logo {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
@@ -52,7 +56,7 @@
 }
 
 .nav-bar .notification-icon {
-    //-fx-graphic: url('notification_icon.png');
+//-fx-graphic: url('notification_icon.png');
     -fx-padding: 0 10px;
 }
 
@@ -85,23 +89,23 @@
     -fx-font-weight: bold;
 }
 
-/* Sidebar styling */
-.sidebar {
-    -fx-background-color: #666666;
-    -fx-padding: 10px;
-}
+/* Sidebar styling */.sidebar {
+                         -fx-padding: 10px;
+                     }
 
 .sidebar Button {
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-padding: 5px 10px;
+    -fx-padding: 0; /* Reduce padding to make it look like a label */
     -fx-border-width: 0;
 }
 
 .sidebar Button:hover {
-    -fx-background-color: #888888;
+    -fx-background-color: transparent; /* Remove hover background color */
+    -fx-text-fill: #888888; /* Change text color on hover */
+    -fx-border-width: 0;
 }
 
 
@@ -122,6 +126,40 @@
 .image-preview:hover {
     -fx-border-color: #0099FF;
 }
+/* Search Field styling */
+.search-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #999999; /* Gray border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-prompt-text-fill: #999999; /* Gray prompt text color */
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+/* Search Button styling */
+.search-button {
+    -fx-background-color: #4CAF50; /* Green background color */
+    -fx-border-width: 0;
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 0 5px 5px 0; /* Rounded corners on the right side */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: pointer;
+}
 
+.search-button:hover {
+    -fx-background-color: #45a049; /* Darker green hover color */
+}
 
+.container {
+-fx-background-color: rgba(255,255,255,0.2);
+ -fx-background-radius: 10;}
 
+.line-color {
+    -fx-background-color: #F3ABB5;
+}
+
+.shadow {
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.2), 10.0, 0.0, 0.0, 10.0)
+}

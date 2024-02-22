@@ -1,6 +1,8 @@
 package controllers;
 
 import entities.Club;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,6 +42,12 @@ public class ViewClubController {
     private Button addButton;
     @FXML
     private Button viewStadiumsButton;
+    @FXML
+     private TextField searchField;
+    @FXML
+    private Label viewClubsButton;
+    @FXML
+    private Label reservationsButton;
 
     private ClubDAO clubDAO;
     private int userId=5;
@@ -60,10 +68,23 @@ public class ViewClubController {
         stadiumNbrColumn.setCellValueFactory(new PropertyValueFactory<>("stadiumNbr"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
+        viewClubsButton.setOnMouseClicked(event -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
+                Scene scene = new Scene(root, 1180.0, 655.0);
+                Stage stage = (Stage) viewClubsButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
         addButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/NewClub/NewClub.fxml"));
-                Scene scene = new Scene(root, 900, 700);
+                Scene scene = new Scene(root, 1180.0, 655.0);
                 Stage stage = (Stage) addButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -89,7 +110,11 @@ public class ViewClubController {
                 openViewStadiums(selectedClub.getId());
             }
         });
+
     }
+
+
+
     private Callback<TableColumn<Club, Void>, TableCell<Club, Void>> createActionCellFactory() {
         return new Callback<TableColumn<Club, Void>, TableCell<Club, Void>>() {
             @Override
@@ -141,6 +166,8 @@ public class ViewClubController {
                 if (isDeleted) {
                     // Remove the deleted club from the table view
                     clubTableView.getItems().remove(club);
+                    // Update the filtered data after deletion
+                    // filteredData.getSource().remove(club);
                     showAlert("Success", "Club deleted successfully.", Alert.AlertType.INFORMATION);
                 } else {
                     showAlert("Error", "Failed to delete club.", Alert.AlertType.ERROR);
@@ -168,7 +195,7 @@ public class ViewClubController {
             Parent root = loader.load();
             NewClubController newClubController = loader.getController();
             newClubController.populateFieldsWithClubData(club);
-            Scene scene = new Scene(root, 900, 700);
+            Scene scene = new Scene(root, 1180.0, 655.0);
             Stage stage = (Stage) addButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -182,7 +209,7 @@ public class ViewClubController {
             SharedData.setClubId(clubId);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ViewStadium/ViewStadium.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root) ;
+            Scene scene = new Scene(root, 1180.0, 655.0);
             Stage stage = (Stage) viewStadiumsButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();

@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import services.ClubDAO;
 
 import javafx.util.Callback;
+import services.StadiumDAO;
+
 import java.io.IOException;
 import java.sql.Time;
 import java.util.List;
@@ -48,8 +50,11 @@ public class ViewClubController {
     private Label viewClubsButton;
     @FXML
     private Label reservationsButton;
-
     private ClubDAO clubDAO;
+    private StadiumDAO stadiumDAO;
+    private Club club;
+
+
     private int userId=5;
 
     public ViewClubController() {
@@ -113,6 +118,14 @@ public class ViewClubController {
 
     }
 
+    public void initData(int clubId) {
+        clubDAO = new ClubDAO();
+        stadiumDAO = new StadiumDAO();
+        club = clubDAO.findById(clubId);
+
+    }
+
+
 
 
     private Callback<TableColumn<Club, Void>, TableCell<Club, Void>> createActionCellFactory() {
@@ -148,6 +161,8 @@ public class ViewClubController {
             }
         };
     }
+
+
 
     private void deleteClub(Club club) {
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);

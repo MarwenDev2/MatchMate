@@ -25,6 +25,8 @@ public class NewStadiumController {
     @FXML
     private Label titleLabel;
     @FXML
+    private ScrollPane imageScrollPane;
+    @FXML
     private Button saveButton;
     @FXML
     private Button backButton;
@@ -40,7 +42,8 @@ public class NewStadiumController {
     private TextField rateField;
     @FXML
     private FlowPane imageFlowPane;
-
+    @FXML
+    private Label viewClubsButton;
     private ImageStadiumDAO imageS;
     private StadiumDAO stadiumDAO;
     private ImageStadiumDAO imageDAO;
@@ -73,7 +76,7 @@ public class NewStadiumController {
         backButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/ViewStadium/ViewStadium.fxml"));
-                Scene scene = new Scene(root, 1000, 600);
+                Scene scene = new Scene(root, 1180.0, 655.0);
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -81,6 +84,19 @@ public class NewStadiumController {
                 e.printStackTrace();
             }
         });
+
+        viewClubsButton.setOnMouseClicked(event -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
+                Scene scene = new Scene(root, 1180.0, 655.0);
+                Stage stage = (Stage) viewClubsButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
     public void hello(){
         return;
@@ -93,7 +109,6 @@ public class NewStadiumController {
         heightField.setText(String.valueOf(s.getHeight()));
         widthField.setText(String.valueOf(s.getWidth()));
         priceField.setText((String.valueOf(s.getPrice())));
-        rateField.setText(String.valueOf(s.getRate()));
 
 
         List<Image> images = imo.findByIDStadium(s.getReference(),"stadium");
@@ -112,9 +127,9 @@ public class NewStadiumController {
         String heightText = heightField.getText();
         String widthText = widthField.getText();
         String priceText = priceField.getText();
-        String rateText = rateField.getText();
 
-        if ( heightText.isEmpty() || widthText.isEmpty() || priceText.isEmpty() || rateText.isEmpty()) {
+
+        if ( heightText.isEmpty() || widthText.isEmpty() || priceText.isEmpty() ) {
             showAlert("Error", "All fields are required.", Alert.AlertType.ERROR);
             return;
         }
@@ -126,13 +141,13 @@ public class NewStadiumController {
             height = Float.parseFloat(heightText);
             width = Float.parseFloat(widthText);
             price = Integer.parseInt(priceText);
-            rate = Integer.parseInt(rateText);
+
         } catch (NumberFormatException e) {
             showAlert("Error", "Height, width, price, and rate must be numeric values.", Alert.AlertType.ERROR);
             return;
         }
 
-        Stadium stadium = new Stadium(reference,c, height, width, price, rate);
+        Stadium stadium = new Stadium(reference,c, height, width, price);
         if (titleLabel.getText().equals("Change your Stadium")) {
 
             if (stadiumDAO.update(stadium)) {
@@ -147,7 +162,7 @@ public class NewStadiumController {
 
             String m = stadiumDAO.save(stadium);
             if (m!=null) {
-                showAlert("Success", "Club added successfully with ID: " + idClub, Alert.AlertType.INFORMATION);
+                showAlert("Success", "Stadium added successfully for Club Name: " + cl.findById(idClub).getName(), Alert.AlertType.INFORMATION);
                 saveImagesToDatabase(reference); // Save uploaded images to the database
                 redirectToViewStadium();
             } else {
@@ -188,7 +203,7 @@ public class NewStadiumController {
     private void redirectToViewStadium() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/ViewStadium/ViewStadium.fxml"));
-            Scene scene = new Scene(root, 1100, 600);
+            Scene scene = new Scene(root, 1180.0, 655.0);
             Stage stage = (Stage) saveButton.getScene().getWindow(); // Assuming saveButton is present in NewClub.fxml
             stage.setScene(scene);
             stage.show();
@@ -227,18 +242,15 @@ public class NewStadiumController {
         Button removeButton = new Button("Remove");
         removeButton.setOnAction(event -> {
             uploadedImages.remove(image);
+            // Remove the HBox containing both the image and the remove button
             imageFlowPane.getChildren().remove(imageBox);
 
-            // Determine the type of image (e.g., "club" or "stadium")
-            String type = image.getType();
-
-            // Call the appropriate DAO to delete the image from the database
-            if(titleLabel.getText().equals("Change your Club"))
-                imageS.delete(image);
+            // Check if there are no images left
 
         });
         return removeButton;
     }
+
     private void addImageToFlowPane(Image image) {
         ImageView imageView = new ImageView(image.getUrl());
         imageView.setFitWidth(100);
@@ -246,12 +258,24 @@ public class NewStadiumController {
 
         HBox imageBox = new HBox(imageView);
         imageBox.setSpacing(10);
-        imageBox.getStyleClass().add("image-box");
 
-        Button removeButton = createRemoveImageButton(image, imageBox); // Pass the HBox to the method
+        Button removeButton = createRemoveImageButton(image, imageBox);
         removeButton.getStyleClass().add("remove-button");
 
-        imageBox.getChildren().add(removeButton); // Add the remove button to the HBox
-        imageFlowPane.getChildren().add(imageBox); // Add the HBox to the imageFlowPane
+        imageBox.getChildren().add(removeButton);
+        imageFlowPane.getChildren().add(imageBox); // Add to the VBox
+
+        imageScrollPane.setContent(imageFlowPane);
+
+        // Ensure the ScrollPane is visible
+        if (imageFlowPane.getChildren().isEmpty()) {
+            // If no images, hide the ScrollPane
+            imageScrollPane.setVisible(false);
+        } else {
+            // If images are present, show the ScrollPane
+            imageScrollPane.setVisible(true);
+        }
+
     }
+
 }

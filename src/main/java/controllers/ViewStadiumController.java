@@ -39,6 +39,8 @@ public class ViewStadiumController {
     private Button backButton;
     @FXML
     private Button addButton;
+    @FXML
+    private Label viewClubsButton;
 
     private StadiumDAO stadiumDAO;
     List<Stadium> stadiums;
@@ -72,10 +74,22 @@ public class ViewStadiumController {
 
         actionsColumn.setCellFactory(createActionCellFactory());
 
+        viewClubsButton.setOnMouseClicked(event -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
+                Scene scene = new Scene(root, 1180.0, 655.0);
+                Stage stage = (Stage) viewClubsButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
         addButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/NewStadium/NewStadium.fxml"));
-                Scene scene = new Scene(root, 1000, 600);
+                Scene scene = new Scene(root, 1180.0, 655.0);
                 Stage stage = (Stage) addButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -88,7 +102,7 @@ public class ViewStadiumController {
         backButton.setOnAction(event -> {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
-                Scene scene = new Scene(root, 1000, 600);
+                Scene scene = new Scene(root, 1180.0, 655.0);
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
@@ -169,7 +183,7 @@ public class ViewStadiumController {
             Parent root = loader.load();
             NewStadiumController newStadiumController = loader.getController();
             newStadiumController.populateFieldsWithStadium(stadium.getReference());
-            Scene scene = new Scene(root, 900, 700);
+            Scene scene = new Scene(root, 1180.0, 655.0);
             Stage stage = (Stage) addButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -184,5 +198,7 @@ public class ViewStadiumController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 
 }

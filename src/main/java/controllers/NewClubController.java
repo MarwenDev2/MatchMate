@@ -29,6 +29,7 @@ public class NewClubController {
 
     @FXML
     private Label titleLabel;
+
     @FXML
     private Button saveButton;
     @FXML
@@ -57,6 +58,8 @@ public class NewClubController {
     private FlowPane imageFlowPane;
     @FXML
     private TextField widthField;
+    @FXML
+    private ScrollPane imageScrollPane;
 
     private ClubDAO clubDAO;
     private ImageDAO imageDAO;
@@ -191,14 +194,17 @@ public class NewClubController {
         Club3.setDescription(description);
         Club3.setHeight(height);
         Club3.setWidth(width);
-        Club3.setStadiumNbr(0);
         User u1 = new User();
         u1.setId(5);
         Club3.setUser(u1);
 
         if (titleLabel.getText().equals("Change your Club")) {
+            int nbr = C.getStadiumNbr();
+            Club3.setId(C.getId());
+            Club3.setStadiumNbr(nbr);
             Club3.setId(C.getId());
             System.out.println(C.getId());
+
             if (clubDAO.update(Club3)) {
                 showAlert("Success", "Club updated successfully.", Alert.AlertType.INFORMATION);
                 saveImagesToDatabase(C.getId()); // Save uploaded images to the database
@@ -208,7 +214,7 @@ public class NewClubController {
             }
         } else {
             // Save new club
-
+            Club3.setStadiumNbr(0);
             int idClub = clubDAO.save(Club3);
             if (idClub != 0) {
                 showAlert("Success", "Club added successfully with ID: " + idClub, Alert.AlertType.INFORMATION);
@@ -243,7 +249,8 @@ public class NewClubController {
                 // Create an instance of your Image class
                 Image image = new Image(name, url, type);
                 uploadedImages.add(image); // Add Image to uploadedImages list
-                addImageToFlowPane(image); // Call addImageToFlowPane() to display the Image
+                addImageToFlowPane(image);
+                // Call addImageToFlowPane() to display the Image
             }
         }
     }
@@ -309,13 +316,24 @@ public class NewClubController {
 
         HBox imageBox = new HBox(imageView);
         imageBox.setSpacing(10);
-        imageBox.getStyleClass().add("image-box");
 
-        Button removeButton = createRemoveImageButton(image, imageBox); // Pass the HBox to the method
+        Button removeButton = createRemoveImageButton(image, imageBox);
         removeButton.getStyleClass().add("remove-button");
 
-        imageBox.getChildren().add(removeButton); // Add the remove button to the HBox
-        imageFlowPane.getChildren().add(imageBox); // Add the HBox to the imageFlowPane
+        imageBox.getChildren().add(removeButton);
+        imageFlowPane.getChildren().add(imageBox); // Add to the VBox
+
+        // Set the VBox containing the FlowPane as the content of the ScrollPane
+        imageScrollPane.setContent(imageFlowPane);
+
+        // Ensure the ScrollPane is visible
+        if (imageFlowPane.getChildren().isEmpty()) {
+            // If no images, hide the ScrollPane
+            imageScrollPane.setVisible(false);
+        } else {
+            // If images are present, show the ScrollPane
+            imageScrollPane.setVisible(true);
+        }
     }
 
     private void redirectToViewClub() {

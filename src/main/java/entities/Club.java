@@ -29,6 +29,15 @@ public class Club {
         this.description = description;
     }
 
+    public Club(String name, Float height, Float width, Time startTime, Time endTime, String description) {
+        this.name = name;
+        this.height = height;
+        this.width = width;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.description = description;
+    }
+
     public Club(User user, String name, Float height, Float width, Time startTime, Time endTime, int stadiumNbr, String description) {
         this.user = user;
         this.name = name;

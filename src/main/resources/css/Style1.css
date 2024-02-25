@@ -1,0 +1,81 @@
+/* Apply general styles to the entire application */
+.root {
+    -fx-background-color: #f0f0f0;
+}
+
+/* BorderPane styling */
+.border-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+}
+
+/* Top pane styling */
+.top-pane {
+    -fx-background-color: #000000;
+    -fx-padding: 10px;
+}
+
+.top-pane .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-font-family: "Arial", sans-serif; /* Example font family */
+}
+
+/* Left pane styling */
+.left-pane {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
+}
+
+.left-pane .button {
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+}
+
+/* Center pane styling */
+.center-pane {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20px;
+}
+
+.center-pane .label {
+    -fx-text-fill: #000000;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial", sans-serif; /* Example font family */
+}
+
+/* Apply styles to all text fields */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-pref-width: 200px; /* Example preferred width */
+    -fx-padding: 5px; /* Example padding */
+    -fx-font-family: "Arial", sans-serif; /* Example font family */
+}
+
+/* Apply styles to all date pickers */
+.date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-pref-width: 200px; /* Example preferred width */
+    -fx-padding: 5px; /* Example padding */
+}
+
+/* Apply styles to all buttons */
+.button {
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 8px 16px; /* Example padding */
+    -fx-font-size: 14px; /* Example font size */
+    -fx-font-family: "Arial", sans-serif; /* Example font family */
+}
+
+/* Apply styles to all image views */
+.image-view {
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-padding: 5px; /* Example padding */
+}

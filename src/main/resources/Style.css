@@ -1,0 +1,57 @@
+.label {
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-family: "Sitka Text";
+}
+
+.button:hover {
+    -fx-background-color: #E8E4C9;
+    -fx-text-fill: black;
+}
+
+#ButtonUpdate {
+    -fx-background-color: #E8E4C9;
+    -fx-text-fill: linear-gradient(to bottom, #589a3a, #9d0000);
+    -fx-font-size: 23px;
+}
+
+#ButtonUpdate:hover {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: linear-gradient(to bottom, #589a3a, #9d0000);
+}
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #E8E4C9;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #E8E4C9;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #E8E4C9;
+}
+
+.table-view .table-row-cell:filled:hover {
+    -fx-background-color: #E8E4C9;
+}

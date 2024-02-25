@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewEvent">
+    <top>
+        <VBox alignment="CENTER_LEFT" spacing="10" />
+    </top>
+    <center>
+
+        <AnchorPane prefHeight="639.0" prefWidth="978.0">
+            <ImageView fitHeight="655.0" fitWidth="1180.0" layoutY="-1.0" opacity="0.14">
+                <image>
+                    <Image url="@/bgfield.jpg" />
+                </image>
+            </ImageView>
+            <!-- Club Information Form -->
+            <TableView fx:id="TableView" layoutX="403.0" layoutY="63.0" onMouseClicked="#RowClicked" prefHeight="482.0" prefWidth="651.0">
+                <columns>
+                    <TableColumn fx:id="IdColumn" prefWidth="75.0" text="Id" visible="false" />
+                    <TableColumn fx:id="NameColumn" prefWidth="70.40002131462097" text="Name" />
+                    <TableColumn fx:id="StartColumn" prefWidth="150.39996337890625" text="Start Date " />
+                    <TableColumn fx:id="EndColumn" prefWidth="99.99996948242188" text="End Date" />
+                    <TableColumn fx:id="ImageColumn" minWidth="0.0" prefWidth="0.0" text="Image" />
+                    <TableColumn fx:id="ClubColumn" prefWidth="79.99996948242188" text="club" visible="false" />
+                    <TableColumn fx:id="ParticipantColumn" prefWidth="148.800048828125" text="nbrParticipants" />
+                    <TableColumn fx:id="PriceColumn" prefWidth="249.5999755859375" text="Price" />
+                </columns>
+            </TableView>
+            <Button fx:id="DetailsButton" layoutX="869.0" layoutY="557.0" mnemonicParsing="false" onAction="#GoToDetails" prefHeight="52.0" prefWidth="159.0" style="-fx-background-color: green;" styleClass="container" stylesheets="@styles23.css" text="Show Details" textFill="WHITE">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Button>
+            <!-- Logo and User Info Container -->
+            <VBox layoutX="8.0" layoutY="16.0" prefHeight="625.0" prefWidth="210.0" styleClass="container" stylesheets="@styles23.css">
+                <children>
+                    <!-- User Info -->
+                    <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="152.0">
+                        <VBox.margin>
+                            <Insets />
+                        </VBox.margin>
+                        <children>
+                            <!-- Logo -->
+                            <ImageView fitHeight="49.0" fitWidth="52.0">
+                                <image>
+                                    <Image url="@/Logo.png" />
+                                </image>
+                            </ImageView>
+                            <ImageView fitHeight="22.0" fitWidth="132.0">
+                                <image>
+                                    <Image url="@/matchmate.png" />
+                                </image>
+                                <HBox.margin>
+                                    <Insets top="15.0" />
+                                </HBox.margin>
+                            </ImageView>
+                        </children>
+                    </HBox>
+                    <HBox prefHeight="34.0" prefWidth="210.0">
+                        <children>
+                            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="10.0">
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                            </VBox>
+                        </children>
+                    </HBox>
+                    <HBox prefHeight="74.0" prefWidth="210.0">
+                        <children>
+                            <ImageView fitHeight="66.0" fitWidth="68.0" styleClass="shadow">
+                                <image>
+                                    <Image url="@/user.png" />
+                                </image>
+                            </ImageView>
+                            <VBox alignment="CENTER" prefHeight="63.0" prefWidth="142.0">
+                                <children>
+                                    <Label prefHeight="0.0" prefWidth="113.0" styleClass="shadow" text="Andrew Tate" textFill="#006622">
+                                        <font>
+                                            <Font name="Calibri Bold" size="21.0" />
+                                        </font>
+                                        <VBox.margin>
+                                            <Insets />
+                                        </VBox.margin>
+                                    </Label>
+                                    <Label prefHeight="13.0" prefWidth="127.0" styleClass="shadow" text="Field Owner">
+                                        <font>
+                                            <Font name="Calibri" size="17.0" />
+                                        </font>
+                                        <VBox.margin>
+                                            <Insets left="15.0" />
+                                        </VBox.margin>
+                                        <textFill>
+                                            <LinearGradient endX="1.0" endY="1.0">
+                                                <stops>
+                                                    <Stop />
+                                                    <Stop offset="1.0">
+                                                        <color>
+                                                            <Color red="0.8736842274665833" green="0.016179338097572327" blue="0.016179338097572327" />
+                                                        </color>
+                                                    </Stop>
+                                                </stops>
+                                            </LinearGradient>
+                                        </textFill>
+                                    </Label>
+                                </children>
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                            </VBox>
+                        </children>
+                    </HBox>
+                    <HBox prefHeight="75.0" prefWidth="210.0" />
+                    <HBox prefHeight="61.0" prefWidth="210.0">
+                        <children>
+                            <ImageView fitHeight="58.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                <image>
+                                    <Image url="@/clubside.png" />
+                                </image>
+                                <HBox.margin>
+                                    <Insets left="8.0" top="3.0" />
+                                </HBox.margin>
+                            </ImageView>
+                            <Label fx:id="viewClubsButton" styleClass="shadow" text="Clubs">
+                                <font>
+                                    <Font name="Calibri" size="23.0" />
+                                </font>
+                                <HBox.margin>
+                                    <Insets left="10.0" top="20.0" />
+                                </HBox.margin>
+                            </Label>
+                        </children>
+                    </HBox>
+                    <HBox prefHeight="71.0" prefWidth="210.0">
+                        <children>
+                            <ImageView fitHeight="48.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                <image>
+                                    <Image url="@/reservation.png" />
+                                </image>
+                                <HBox.margin>
+                                    <Insets left="12.0" top="5.0" />
+                                </HBox.margin>
+                            </ImageView>
+                            <Label fx:id="reservationsButton" prefHeight="35.0" prefWidth="160.0" styleClass="shadow" text="Reservations">
+                                <font>
+                                    <Font name="Calibri" size="23.0" />
+                                </font>
+                                <HBox.margin>
+                                    <Insets left="10.0" top="18.0" />
+                                </HBox.margin>
+                            </Label>
+                        </children>
+                    </HBox>
+                    <HBox prefHeight="75.0" prefWidth="210.0">
+                        <children>
+                            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                <image>
+                                    <Image url="@/event.png" />
+                                </image>
+                                <HBox.margin>
+                                    <Insets left="10.0" top="5.0" />
+                                </HBox.margin>
+                            </ImageView>
+                            <Label fx:id="reservationsButton1" prefHeight="35.0" prefWidth="160.0" styleClass="shadow" text="Events">
+                                <font>
+                                    <Font name="Calibri" size="23.0" />
+                                </font>
+                                <HBox.margin>
+                                    <Insets left="10.0" top="18.0" />
+                                </HBox.margin>
+                            </Label>
+                        </children>
+                    </HBox>
+                    <HBox prefHeight="75.0" prefWidth="210.0">
+                        <children>
+                            <ImageView fitHeight="55.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
+                                <image>
+                                    <Image url="@/claim.png" />
+                                </image>
+                                <HBox.margin>
+                                    <Insets left="10.0" top="5.0" />
+                                </HBox.margin>
+                            </ImageView>
+                            <Label fx:id="reservationsButton11" prefHeight="35.0" prefWidth="160.0" styleClass="shadow" text="Claims">
+                                <font>
+                                    <Font name="Calibri" size="23.0" />
+                                </font>
+                                <HBox.margin>
+                                    <Insets left="10.0" top="18.0" />
+                                </HBox.margin>
+                            </Label>
+                        </children>
+                    </HBox>
+                </children>
+                <padding>
+                    <Insets top="5.0" />
+                </padding>
+            </VBox>
+         <Button fx:id="AddEvent" layoutX="434.0" layoutY="557.0" mnemonicParsing="false" onAction="#GoToAddScene" prefHeight="52.0" prefWidth="159.0" style="-fx-background-color: green;" styleClass="container" stylesheets="@styles23.css" text="Add Event" textFill="WHITE">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </Button>
+        </AnchorPane>
+    </center>
+</BorderPane>

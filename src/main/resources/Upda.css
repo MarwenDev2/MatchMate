@@ -1,0 +1,45 @@
+/* Button styling */
+.button {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-border: none;
+    -fx-text-fill: white; /* White text */
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: pointer;
+    -fx-border-radius: 5px;
+    -fx-font-family: "Arial"; /* Example font family */
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Darker green background on hover */
+}
+
+/* Label styling */
+.label {
+    -fx-text-fill: black; /* Black text */
+    -fx-font-family: "Arial"; /* Example font family */
+}
+
+/* MatchMate label specific styling */
+#matchMateLabel {
+    -fx-text-fill: green; /* Green text */
+    -fx-font-family: "Arial"; /* Example font family */
+}
+
+/* Date picker styling */
+.date-picker {
+    -fx-background-color: white; /* White background */
+    -fx-border-color: #CCCCCC; /* Light gray border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-font-family: "Arial"; /* Example font family */
+}
+
+.date-picker:hover {
+    -fx-border-color: #0099FF; /* Blue border on hover */
+}
+
+.date-picker:focused {
+    -fx-border-color: #0099FF; /* Blue border when focused */
+}

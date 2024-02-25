@@ -1,0 +1,127 @@
+.logo {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.sidebar {
+    -fx-background-color: #666666;
+    -fx-padding: 10px;
+}
+
+.title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.form-label {
+    -fx-min-width: 100px;
+    -fx-font-weight: bold;
+}
+
+/* Button styling */
+.button {
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-border: none;
+    -fx-color: white;
+    -fx-padding: 10px 20px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: pointer;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #45a049; /* Darker Green */
+}
+
+/* Navbar styling */
+.nav-bar {
+    -fx-background-color: #CCCCCC; /* Vague color */
+    -fx-padding: 10px;
+}
+
+.nav-bar .logo-text {
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.nav-bar .logo-text .green {
+    -fx-text-fill: green;
+}
+
+.nav-bar .notification-icon {
+    //-fx-graphic: url('notification_icon.png');
+    -fx-padding: 0 10px;
+}
+
+
+.nav-bar Button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-border-width: 0;
+}
+
+.nav-bar Button:hover {
+    -fx-background-color: #555555;
+}
+.logo-m {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: green;
+}
+
+.logo-atch {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+.logo-ate {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+}
+
+/* Sidebar styling */
+.sidebar {
+    -fx-background-color: #666666;
+    -fx-padding: 10px;
+}
+
+.sidebar Button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-border-width: 0;
+}
+
+.sidebar Button:hover {
+    -fx-background-color: #888888;
+}
+
+
+.title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+/* Image FlowPane */
+#imageFlowPane {
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+}
+.image-preview {
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+.image-preview:hover {
+    -fx-border-color: #0099FF;
+}
+
+
+

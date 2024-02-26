@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="476.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterProductController">
+   <children>
+      <VBox layoutX="200.0" layoutY="1.0" prefHeight="257.0" prefWidth="265.0" />
+      <HBox layoutY="1.0" prefHeight="514.0" prefWidth="790.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <ImageView fitHeight="607.0" fitWidth="919.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Image1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <VBox layoutX="9.0" layoutY="11.0" prefHeight="586.0" prefWidth="202.0" style="-fx-border-color: #000000;">
+         <children>
+            <HBox prefHeight="55.0" prefWidth="201.0">
+               <children>
+                  <ImageView fitHeight="86.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Capture_d_écran_2024-02-17_224802-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox prefHeight="517.0" prefWidth="131.0">
+               <children>
+                  <HBox prefHeight="61.0" prefWidth="201.0">
+                     <children>
+                        <ImageView fitHeight="114.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/téléchargement.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Dashboard" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="35.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Math" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="61.0" prefWidth="137.0" stylesheets="@../java/values/styles.css">
+                     <children>
+                        <ImageView fitHeight="90.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Design_sans_titre__3_-removebg-preview.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label prefHeight="27.0" prefWidth="93.0" text="User" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="68.0" prefWidth="182.0" stylesheets="@../java/values/styles.css">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/téléchargement%20(1).png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Reservation" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="61.0" prefWidth="201.0" stylesheets="@../java/values/styles.css">
+                     <children>
+                        <ImageView fitHeight="70.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/Design_sans_titre__5_-removebg-preview.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Events" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="61.0" prefWidth="201.0">
+                     <children>
+                        <ImageView fitHeight="64.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/téléchargement%20(3).png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Fields" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="61.0" prefWidth="201.0" styleClass="comboBox" stylesheets="@../java/values/styles.css">
+                     <children>
+                        <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/boutique-en-ligne.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="35.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Store">
+                           <HBox.margin>
+                              <Insets left="15.0" top="12.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="61.0" prefWidth="201.0">
+                     <children>
+                        <ImageView fitHeight="76.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/téléchargement%20(2).png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label text="Claim" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="5.0" top="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria Math" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="223.0" layoutY="11.0" prefHeight="586.0" prefWidth="681.0" style="-fx-border-color: #000000;">
+         <children>
+      
+                                                                        <ChoiceBox fx:id="sizeTF" layoutX="133.0" layoutY="319.0" prefHeight="41.0" prefWidth="185.0" styleClass="comboBox" stylesheets="@../java/values/styles.css" />
+            <ChoiceBox fx:id="typeTF" layoutX="389.0" layoutY="318.0" prefHeight="42.0" prefWidth="186.0" styleClass="comboBox" stylesheets="@../java/values/styles.css" />
+      
+                                                                        <TextField fx:id="priceTF" layoutX="133.0" layoutY="239.0" prefHeight="37.0" prefWidth="186.0" promptText="Price" stylesheets="@../java/values/styles.css">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="search-box" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+      
+                                                                        <TextField fx:id="quantityTF" layoutX="390.0" layoutY="238.0" prefHeight="38.0" prefWidth="185.0" promptText="Quantity" stylesheets="@../java/values/styles.css">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="search-box" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+            <Label layoutX="353.0" layoutY="332.0" text="Type" textFill="WHITE">
+               <font>
+                  <Font name="Cambria" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="87.0" layoutY="331.0" text="Size" textFill="WHITE">
+               <font>
+                  <Font name="Cambria Math" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="referenceTF" layoutX="134.0" layoutY="146.0" prefHeight="37.0" prefWidth="185.0" promptText="Reference" stylesheets="@../java/values/styles.css">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="search-box" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+      
+                                                                        <TextField fx:id="nameTF" layoutX="380.0" layoutY="146.0" prefHeight="37.0" prefWidth="186.0" promptText="Name" stylesheets="@../java/values/styles.css">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="search-box" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </TextField>
+            <Text layoutX="261.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #000000;" text="Add Product" textAlignment="CENTER" wrappingWidth="184.79998779296886">
+               <font>
+                  <Font name="System Bold Italic" size="31.0" />
+               </font>
+            </Text>
+      
+                                                <Button fx:id="ajouter" layoutX="261.0" layoutY="463.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="38.0" prefWidth="82.0" style="-fx-background-color: #ABE188;" stylesheets="@../java/values/styles.css" text="Add">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="add-btn" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </Button>
+      
+                                                <Button fx:id="afficher" layoutX="380.0" layoutY="464.0" mnemonicParsing="false" onAction="#Afficher" style="-fx-background-color: #D6E5E3;" stylesheets="@../java/values/styles.css" text="Display">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="add-btn" />
+                  <String fx:value="shadow" />
+               </styleClass>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>

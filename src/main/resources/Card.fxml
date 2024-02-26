@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="150.0" prefWidth="280.0">
+         <children>
+            <ImageView fx:id="imageCard" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <HBox prefHeight="33.0" prefWidth="280.0">
+         <children>
+            <Label fx:id="refCard" text="Label" />
+         </children>
+      </HBox>
+      <HBox prefHeight="32.0" prefWidth="280.0">
+         <children>
+            <Label fx:id="nameCard" text="Label" />
+         </children>
+      </HBox>
+      <HBox prefHeight="30.0" prefWidth="280.0">
+         <children>
+            <Label fx:id="priceCard" text="Label" />
+         </children>
+      </HBox>
+      <HBox prefHeight="34.0" prefWidth="280.0">
+         <children>
+            <Label fx:id="typeCard" text="Label" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

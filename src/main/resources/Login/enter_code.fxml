@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EnterCodeController">
+   <children>
+      <ImageView fitHeight="614.0" fitWidth="435.0" layoutX="-16.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/login.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="codetxt" layoutX="471.0" layoutY="279.0" prefHeight="40.0" prefWidth="270.0" promptText="Google Verification Code" />
+      <Label layoutX="451.0" layoutY="219.0" prefHeight="46.0" prefWidth="327.0" text="Enter Verification Code" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="Verify" layoutX="628.0" layoutY="388.0" onAction="#VerifyCode" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: #006400;" text="Send" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="58.0" fitWidth="172.0" layoutX="604.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/matchmatelogo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="469.0" layoutY="319.0" prefHeight="32.0" prefWidth="270.0" text="Please enter the code sent to your email address." textFill="#817070">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="469.0" layoutY="335.0" prefHeight="32.0" prefWidth="163.0" text="This code is required to confirm your identity" textFill="#817070">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Text onMouseClicked="#load_code_page" fx:id="go_backLink" fill="GREEN" layoutX="690.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Go Back " underline="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

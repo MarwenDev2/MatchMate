@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="246.0" prefWidth="389.0" styleClass="card" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PanierCardController">
+
+    <!-- ImageView for displaying the product image -->
+    <ImageView fx:id="imagepanier" fitHeight="150.0" fitWidth="158.0" layoutY="32.8" AnchorPane.leftAnchor="10" AnchorPane.topAnchor="33.0" />
+
+    <!-- Labels for displaying information -->
+    <Label fx:id="referenceLabel" layoutX="297.0" layoutY="32.0" prefHeight="18.0" prefWidth="98.0" />
+    <Label fx:id="idProductLabel" layoutX="300.0" layoutY="35.0" prefHeight="18.0" prefWidth="78.0" />
+    <Label fx:id="idUserLabel" layoutX="292.0" layoutY="75.0" prefHeight="26.0" prefWidth="78.0" />
+    <Label fx:id="totalLabel" layoutX="286.0" layoutY="155.0" prefHeight="26.0" prefWidth="78.0" />
+
+    <!-- Buttons for delete and modify actions -->
+    <Button fx:id="deleteButton" layoutX="206.0" layoutY="202.0" onAction="#handleDelete" prefHeight="30.0" prefWidth="78.0" styleClass="delete-button" stylesheets="@styles.css" text="Delete">
+      <font>
+         <Font name="Cambria Bold" size="14.0" />
+      </font></Button>
+    <Button fx:id="modifyButton" layoutX="297.0" layoutY="202.0" onAction="#handleModify" prefHeight="30.0" prefWidth="78.0" styleClass="modify-button" stylesheets="@styles.css" text="Modify">
+      <font>
+         <Font name="Cambria Bold" size="14.0" />
+      </font></Button>
+   <Label layoutX="222.0" layoutY="22.0" prefHeight="29.0" prefWidth="78.0" text="Reference:">
+      <font>
+         <Font name="Cambria Bold" size="14.0" />
+      </font>
+      <padding>
+         <Insets top="10.0" />
+      </padding>
+   </Label>
+   <Label layoutX="233.0" layoutY="69.0" text="IdUser:">
+      <font>
+         <Font name="Cambria Bold" size="14.0" />
+      </font>
+      <padding>
+         <Insets top="10.0" />
+      </padding>
+   </Label>
+   <Label layoutX="231.0" layoutY="112.0" text="Quantity:">
+      <font>
+         <Font name="Cambria Bold" size="14.0" />
+      </font>
+      <padding>
+         <Insets top="10.0" />
+      </padding>
+   </Label>
+   <Label layoutX="232.0" layoutY="150.0" text="Total:">
+      <font>
+         <Font name="Cambria Bold" size="14.0" />
+      </font>
+      <padding>
+         <Insets top="10.0" />
+      </padding>
+   </Label>
+   <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="191.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/etiqueter.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="201.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/des-boites.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="26.0" fitWidth="20.0" layoutX="206.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/utilisateur.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="204.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@images/etiquette-de-prix.png" />
+      </image>
+   </ImageView>
+   <TextField fx:id="quantityLabel" layoutX="297.0" layoutY="116.0" prefHeight="26.0" prefWidth="114.0" />
+
+</AnchorPane>

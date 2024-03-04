@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../user_profile_player.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddUserByAdminController">
+   <children>
+      <AnchorPane layoutX="218.0" layoutY="90.0" prefHeight="497.0" prefWidth="623.0" styleClass="page" stylesheets="@../user_profile_player.css" />
+      <AnchorPane layoutX="-4.0" layoutY="88.0" prefHeight="512.0" prefWidth="212.0" style="-fx-background-color: white;">
+         <children>
+            <Button fx:id="RECLAMATIONS_btn4" layoutX="37.0" layoutY="392.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="RECLAMATIONS" />
+            <Button fx:id="EVENTS_btn" layoutX="37.0" layoutY="333.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="EVENTS" />
+            <Button fx:id="users_btn" layoutX="37.0" layoutY="92.0" mnemonicParsing="false" onAction="#seeUsers" prefHeight="43.0" prefWidth="118.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="USERS" />
+            <Button fx:id="STORE_btn" layoutX="37.0" layoutY="272.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="STORE" />
+            <Button fx:id="FIELDS_btn" layoutX="37.0" layoutY="211.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="RESERVATION" />
+            <Button fx:id="CLUBS_btn" layoutX="37.0" layoutY="149.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="CLUBS" />
+            <Line endX="75.60000610351562" layoutX="138.0" layoutY="66.0" startX="-123.5999984741211" />
+            <Label fx:id="username" layoutX="51.0" layoutY="27.0" prefHeight="27.0" prefWidth="186.0" textFill="GREEN">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="63.0" text="WELCOME">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <TextField fx:id="users_add_lastname" layoutX="318.0" layoutY="196.0" prefHeight="26.0" prefWidth="185.0" />
+      <TextField fx:id="users_add_firstname" layoutX="318.0" layoutY="148.0" prefHeight="26.0" prefWidth="186.0" />
+      <Label layoutX="249.0" layoutY="152.0" text="FirstName" />
+      <Label layoutX="251.0" layoutY="200.0" text="LastName" />
+      <ComboBox fx:id="users_add_role" layoutX="579.0" layoutY="243.0" prefHeight="26.0" prefWidth="226.0" promptText="choose" />
+      <TextField fx:id="users_add_phone" layoutX="318.0" layoutY="239.0" prefHeight="26.0" prefWidth="186.0" />
+      <Label layoutX="250.0" layoutY="243.0" text="Phone # " />
+      <Label layoutX="533.0" layoutY="247.0" text="Role" />
+      <TextField fx:id="users_add_email" layoutX="318.0" layoutY="287.0" prefHeight="26.0" prefWidth="185.0" />
+      <Label layoutX="260.0" layoutY="291.0" text="Email" />
+      <ImageView fx:id="users_add_img" fitHeight="101.0" fitWidth="162.0" layoutX="579.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="users_add_img_upload_btn" layoutX="761.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleLoadImageButton" text="Upload" />
+      <Label layoutX="528.0" layoutY="152.0" text="Image" />
+      <Button fx:id="users_clear" layoutX="568.0" layoutY="422.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="31.0" prefWidth="68.0" styleClass="btn" stylesheets="@../user_profile_player.css" text="Clear">
+         <font>
+            <Font name="Arial Nova" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="add_user_btn" layoutX="655.0" layoutY="422.0" mnemonicParsing="false" onAction="#addUser" prefHeight="31.0" prefWidth="161.0" style="-fx-background-color: #407a52;" styleClass="btn" stylesheets="@../user_profile_player.css" text="Add User " textFill="WHITE">
+         <font>
+            <Font name="Arial Nova" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="profile_btn" layoutX="767.0" layoutY="19.0" mnemonicParsing="false" onAction="#seeProfile" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: black;" styleClass="btn" stylesheets="@../user_profile_player.css" text="profile" textFill="#f7f4f4" />
+      <Button fx:id="logout_btn" layoutX="692.0" layoutY="19.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: black;" styleClass="btn" stylesheets="@../user_profile_player.css" text="logout" textFill="#f7f4f4" />
+      <Label layoutX="618.0" layoutY="68.0" prefHeight="43.0" prefWidth="236.0" text="Add New User ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="users_add_password" layoutX="315.0" layoutY="338.0" prefHeight="26.0" prefWidth="185.0" />
+      <Label layoutX="255.0" layoutY="342.0" text="Password" />
+      <Label layoutX="63.0" layoutY="19.0" prefHeight="22.0" prefWidth="142.0" text="MatchMate Admin " textFill="#636060">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="11.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/logo.png" />
+         </image>
+      </ImageView>
+      <Text fill="#636060" layoutX="87.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Managment ">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

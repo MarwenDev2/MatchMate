@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="566.0" prefWidth="845.0" styleClass="chosen-fruit-card" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PanierViewController">
+   <children>
+       <ScrollPane fx:id="scrollPane" layoutX="52.0" layoutY="143.0" prefHeight="331.0" prefWidth="742.0" style="-fx-border-color: #000000;" stylesheets="@styles.css">
+           <!-- Content will be loaded dynamically here -->
+           <HBox fx:id="stadiumCardsContainer" spacing="20" />
+       </ScrollPane>
+      <Label layoutX="149.0" layoutY="39.0" text="Shopping Cart">
+         <font>
+            <Font name="Cambria Bold Italic" size="36.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="68.0" fitWidth="74.0" layoutX="43.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/shopping-en-ligne.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="purchase" layoutX="627.0" layoutY="490.0" mnemonicParsing="false" onAction="#handlePurchase" prefHeight="51.0" prefWidth="166.0" style="-fx-background-color: #28a745;" stylesheets="@styles.css" text="Make Purchase">
+         <font>
+            <Font name="Cambria Bold" size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="add-btn" />
+            <String fx:value="modify-button" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Button>
+      <Button fx:id="pdfbutton" layoutX="52.0" layoutY="490.0" mnemonicParsing="false" onAction="#handlepdf" prefHeight="51.0" prefWidth="166.0" style="-fx-background-color: #28a745;" stylesheets="@styles.css" text="PDF">
+         <font>
+            <Font name="Cambria Bold" size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="add-btn" />
+            <String fx:value="modify-button" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,33 @@
+/* Card container */
+.container {
+    -fx-background-color: #f0f0f0; /* Background color */
+    -fx-background-radius: 10px; /* Rounded corners */
+    -fx-padding: 10px; /* Padding */
+}
+
+/* Image style */
+#productImageView {
+    -fx-fit-height: 150px; /* Set image height */
+    -fx-fit-width: 261px; /* Set image width */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0); /* Add drop shadow effect */
+}
+
+/* Label styles */
+.label {
+    -fx-font-family: "Cambria"; /* Font family */
+    -fx-font-size: 14px; /* Font size */
+    -fx-text-fill: #333; /* Text color */
+}
+
+/* Button style */
+#commanderButton {
+    -fx-background-color: #8FB339; /* Background color */
+    -fx-text-fill: #f4f2f2; /* Text color */
+    -fx-font-family: "Cambria Bold"; /* Font family */
+    -fx-font-size: 15px; /* Font size */
+}
+
+/* Button hover effect */
+#commanderButton:hover {
+    -fx-background-color: #6d8f25; /* Darker background color on hover */
+}

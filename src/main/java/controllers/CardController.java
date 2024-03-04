@@ -1,40 +1,94 @@
 package controllers;
 
-import entities.ImageProduct;
-import entities.Product;
-import entities.ProductClient;
+import entities.*;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import services.ImageService;
+import services.PanierService;
 
-import javax.swing.text.html.ImageView;
-import java.awt.*;
+import java.util.List;
 
 public class CardController {
 
-        @FXML
-        private ImageView imageCard;
+    @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private Label ReferenceLabel;
+    @FXML
+    private Label NameLabel;
+    @FXML
+    private Label PriceLabel;
+    @FXML
+    private Button addcartbutton;
+    @FXML
+    private ImageView productImageView;
+    private CardsView cardsViewController;
+    @FXML
+    private TextField quantityLabel;
+    private Product product;
+    private ImageService imageService;
 
-        @FXML
-        private Label nameCard;
+    private User currentUser= SessionManager.getInstance().getCurrentUser();
 
-        @FXML
-        private Label priceCard;
+    public CardController() {
+        imageService = new ImageService();
+    }
 
-        @FXML
-        private Label refCard;
+    @FXML
+    public void initialize(){
+        Product p = new Product();
+    }
 
-        @FXML
-        private Label typeCard;
+    public void setData(Product product) {
+        this.product = product;
+        ReferenceLabel.setText(product.getReference());
+        NameLabel.setText(product.getName());
+        PriceLabel.setText(String.valueOf(product.getPrice()));
+        List<Image>images=imageService.findByObjectId(product.getId(),"product");
+        javafx.scene.image.Image image=new javafx.scene.image.Image(images.get(0).getUrl());
+        productImageView.setImage(image);
+    }
 
-        public  void setData(ProductClient pc)
-        {
-                Image image=new Image(getClass().getResourceAsStream(ProductClient.getImage()));
-                pc.setImage(String.valueOf(image));
-                refCard.setText(pc.getRef());
-                nameCard.setText(pc.getName());
-                //priceCard.setText(String.valueOf(Float.parseFloat(pc.getPrice())));
-                typeCard.setText(pc.getType());
+
+
+    // Reference to CardsView controller
+
+    public void setCardsViewController(CardsView cardsViewController) {
+        this.cardsViewController = cardsViewController;
+    }
+
+
+
+    public void addtocart(javafx.event.ActionEvent actionEvent) {
+        try {
+            PanierService panierService = new PanierService();
+            Panier panier = new Panier(currentUser, product, Integer.parseInt(quantityLabel.getText()));
+            panierService.save(panier);
+
+            // Create and configure the alert
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Product was successfully added !");
+
+            // Display the alert
+            alert.showAndWait();
+        } catch (NumberFormatException e) {
+            // Handle the case where quantityLabel.getText() is not a valid integer
+            e.printStackTrace(); // You might want to log this error for debugging purposes
+            // Show an error alert
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Quantity");
+            alert.setContentText("Please enter a valid quantity.");
+
+            alert.showAndWait();
         }
 
     }
+}

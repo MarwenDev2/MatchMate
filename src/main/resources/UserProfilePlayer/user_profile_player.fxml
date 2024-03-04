@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="page" prefHeight="600.0" prefWidth="894.0" styleClass="page" stylesheets="@../user_profile_player.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UserProfilePlayerController">
+    <children>
+        <AnchorPane id="side_bar_anchorpane" fx:id="side_bar_anchorpane" prefHeight="600.0" prefWidth="226.0" style="-fx-background-color: white; -fx-border-radius: 25;" styleClass="side_bar_anchorpane" stylesheets="@../user_profile_player.css">
+            <children>
+                <Button fx:id="RECLAMATION_btn" layoutX="36.0" layoutY="481.0" mnemonicParsing="false" onAction="#see_reclation" prefHeight="38.0" prefWidth="124.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="RECLAIM" />
+                <Button fx:id="FIELDS_btn" layoutX="35.0" layoutY="252.0" mnemonicParsing="false" onAction="#see_fields" prefHeight="37.0" prefWidth="124.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="CLUBS" />
+                <ImageView fx:id="player_img" fitHeight="40.0" fitWidth="30.0" layoutX="23.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" styleClass="player_img">
+                    <image>
+                        <Image url="@../../../../../../Desktop/20221111_023224_0-01.jpeg" />
+                    </image>
+                </ImageView>
+                <Text layoutX="52.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                <Label fx:id="player_name" layoutX="61.0" layoutY="112.0" prefHeight="26.0" prefWidth="142.0">
+               <font>
+                  <Font name="Century Gothic Bold" size="15.0" />
+               </font></Label>
+                <Label fx:id="player_email" layoutX="61.0" layoutY="133.0" prefHeight="18.0" prefWidth="142.0" textFill="#0d9e2a">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Button fx:id="FEED_btn" layoutX="36.0" layoutY="188.0" mnemonicParsing="false" onAction="#see_feed" prefHeight="38.0" prefWidth="124.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="HOME PAGE" />
+                <Button fx:id="STORE_btn" layoutX="38.0" layoutY="365.0" mnemonicParsing="false" onAction="#see_store" prefHeight="37.0" prefWidth="118.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="SHOP" />
+                <Button fx:id="EVENTS_btn1" layoutX="39.0" layoutY="310.0" mnemonicParsing="false" onAction="#see_event" prefHeight="37.0" prefWidth="118.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="EVENTS" />
+            <ImageView fx:id="app_logo" fitHeight="56.0" fitWidth="171.0" layoutX="12.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/matchmatelogo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="RECLAMATION_btn1" layoutX="36.0" layoutY="422.0" mnemonicParsing="false" onAction="#see_reclation" prefHeight="38.0" prefWidth="124.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="RESERVATION" />
+            </children>
+        </AnchorPane>
+        <Button fx:id="logoutbtn" layoutX="814.0" layoutY="36.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: black;" styleClass="btn" text="LOGOUT" textFill="WHITE" />
+      <AnchorPane layoutX="239.0" layoutY="147.0" prefHeight="293.0" prefWidth="575.0">
+         <children>
+            <TextField fx:id="profile_phone" layoutX="405.0" layoutY="60.0" />
+            <Label layoutX="347.0" layoutY="64.0" text="Phone #: ">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Label>
+            <TextField fx:id="profile_email" layoutX="188.0" layoutY="126.0" />
+            <Label layoutX="146.0" layoutY="130.0" text="Email">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Label>
+            <ImageView fx:id="profile_Newimg_upload" fitHeight="97.0" fitWidth="114.0" layoutX="423.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="profile_upload_img_btn" layoutX="561.0" layoutY="157.0" mnemonicParsing="false" onAction="#handleLoadImageButton" text="Upload" />
+            <Label layoutX="355.0" layoutY="131.0" text="Image">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font></Label>
+            <TextField fx:id="profile_lastName" layoutX="188.0" layoutY="60.0" />
+            <Button fx:id="profile_change_password_btn" layoutX="195.0" layoutY="198.0" mnemonicParsing="false" onAction="#changePassword" styleClass="btn" text="Change password" textFill="WHITE">
+               <font>
+                  <Font name="Arial Nova" size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="195.0" layoutY="33.0" text="LastName">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="old_mdp_txt" layoutX="209.0" layoutY="248.0" text=" enter old password : " textFill="#1b1b1a" />
+            <TextField fx:id="old_mdp" layoutX="335.0" layoutY="244.0" />
+            <Label fx:id="new_mdp_txt" layoutX="207.0" layoutY="293.0" text=" enter New password : " textFill="#1b1b1a" />
+            <TextField fx:id="new_mdp" layoutX="337.0" layoutY="289.0" prefHeight="26.0" prefWidth="150.0" />
+            <ImageView fx:id="profile_old_image" fitHeight="132.0" fitWidth="150.0" layoutX="14.0" layoutY="-25.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="profile_delete_account_btn" layoutX="729.0" layoutY="534.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="31.0" prefWidth="71.0" style="-fx-background-color: #407a52;" styleClass="btn" text="Delete " textFill="WHITE">
+         <font>
+            <Font name="Arial Nova" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="profile_update_btn" layoutX="812.0" layoutY="534.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="31.0" prefWidth="71.0" styleClass="btn" text="Update" textFill="WHITE">
+         <font>
+            <Font name="Arial Nova" size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="430.0" layoutY="113.0" text="FirstName">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Button fx:id="profile_change_password_confirm_btn" layoutX="649.0" layoutY="476.0" mnemonicParsing="false" onAction="#confirmPasswordChange" prefHeight="31.0" prefWidth="79.0" styleClass="btn" text="confirm" textFill="WHITE">
+         <font>
+            <Font name="Arial Nova" size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="profile_firstName" layoutX="419.0" layoutY="135.0" />
+      <ComboBox fx:id="profile_roles" layoutX="639.0" layoutY="135.0" prefWidth="150.0" promptText="choose" />
+      <Label layoutX="597.0" layoutY="139.0" text="Role">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+          <Button fx:id="seeProfile_btn" layoutX="727.0" layoutY="36.0" mnemonicParsing="false" onAction="#see_profile" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: black;" styleClass="btn" text="PROFILE" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="510.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardController">
+    <children>
+        <ImageView fitHeight="676.0" fitWidth="1319.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/24234169_6891919.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/Capture_d_écran_2024-03-02_201756-removebg-preview.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="LOGOUT" fitHeight="61.0" fitWidth="49.0" layoutX="1135.0" layoutY="613.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/se-deconnecter.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="PROFIL" fitHeight="61.0" fitWidth="49.0" layoutX="1135.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/profil.png" />
+            </image>
+        </ImageView>
+          <ImageView fitHeight="119.0" fitWidth="99.0" layoutX="534.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@images/téléchargement (1).png" />
+              </image>
+          </ImageView>
+          <Button fx:id="CLUB_FIELDS" layoutX="582.2" layoutY="234.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="441.0" stylesheets="@styles1.css" text="View Clus &amp; Fields" textFill="#fffefe" AnchorPane.leftAnchor="582.2">
+              <font>
+                  <Font name="Cambria Bold" size="22.0" />
+              </font>
+         <styleClass>
+            <String fx:value="comboBox" />
+            <String fx:value="shadow" />
+         </styleClass>
+          </Button>
+          <Button fx:id="EVENTS" layoutX="629.0" layoutY="321.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="394.0" stylesheets="@styles1.css" text="Join Events" textFill="#fffefe">
+              <font>
+                  <Font name="Cambria Bold" size="22.0" />
+              </font>
+         <styleClass>
+            <String fx:value="comboBox" />
+            <String fx:value="shadow" />
+         </styleClass>
+          </Button>
+          <Button fx:id="CLAIM" layoutX="681.0" layoutY="407.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="343.0" stylesheets="@styles1.css" text="View Store" textFill="WHITE">
+              <font>
+                  <Font name="Cambria Bold" size="22.0" />
+              </font>
+         <styleClass>
+            <String fx:value="comboBox" />
+            <String fx:value="shadow" />
+         </styleClass>
+          </Button>
+          <ImageView fitHeight="91.0" fitWidth="110.0" layoutX="651.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@images/Design_sans_titre__5_-removebg-preview.png" />
+              </image>
+          </ImageView>
+          <ImageView fitHeight="91.0" fitWidth="103.0" layoutX="737.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@images/téléchargement (2).png" />
+              </image>
+          </ImageView>
+      <Button fx:id="CLUB_FIELDS1" layoutX="532.0" layoutY="149.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="490.0" stylesheets="@styles1.css" text="My Reservations" textFill="#fffefe">
+         <font>
+            <Font name="Cambria Bold" size="22.0" />
+         </font>
+         <styleClass>
+            <String fx:value="comboBox" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Button>
+      <Button fx:id="CLAIM1" layoutX="726.0" layoutY="495.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="298.0" stylesheets="@styles1.css" text="Claim" textFill="WHITE">
+         <font>
+            <Font name="Cambria Bold" size="22.0" />
+         </font>
+         <styleClass>
+            <String fx:value="comboBox" />
+            <String fx:value="shadow" />
+         </styleClass>
+      </Button>
+      <ImageView fitHeight="75.0" fitWidth="73.0" layoutX="688.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Design_sans_titre__4_-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="91.0" fitWidth="110.0" layoutX="593.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/téléchargement-removebg-preview.png" />
+         </image>0
+      </ImageView>
+    </children>
+</AnchorPane>

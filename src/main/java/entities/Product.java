@@ -9,26 +9,17 @@ public class Product {
     private String size;
     private String type;
 
-
-
-
-
-
-
-
-
     public Product() {
     }
 
     public Product(int id, String reference, String name, float price, int quantity, String size, String type) {
         this.id = id;
         this.reference = reference;
-        this.name=name;
+        this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.size = size;
         this.type = type;
-
     }
 
     public Product(String reference, String name, float price, int quantity, String size, String type) {
@@ -38,7 +29,6 @@ public class Product {
         this.quantity = quantity;
         this.size = size;
         this.type = type;
-
     }
 
     public int getId() {
@@ -96,8 +86,6 @@ public class Product {
     public void setType(String type) {
         this.type = type;
     }
-
-
 
     @Override
     public String toString() {

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.Club.ClubChartsController" stylesheets="/css.css">
+
+    <top>
+        <Text text="Club Statistics" styleClass="title" />
+    </top>
+
+    <center>
+        <BarChart fx:id="clubBarChart">
+            <xAxis>
+                <CategoryAxis />
+            </xAxis>
+            <yAxis>
+                <NumberAxis />
+            </yAxis>
+        </BarChart>
+    </center>
+
+    <right>
+        <VBox spacing="10">
+            <Text text="Governorate Distribution" styleClass="subtitle" />
+            <PieChart fx:id="clubPieChart" />
+        </VBox>
+    </right>
+
+    <bottom>
+        <VBox spacing="10">
+            <Text text="Stadium Count per Club" styleClass="subtitle" />
+            <LineChart fx:id="stadiumLineChart">
+                <xAxis>
+                    <CategoryAxis />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis />
+                </yAxis>
+            </LineChart>
+        </VBox>
+    </bottom>
+
+    <Button text="Close" onAction="#handleCloseButtonAction"/>
+
+</BorderPane>

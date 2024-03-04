@@ -11,16 +11,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
+      // Parent root = FXMLLoader.load(getClass().getResource("/ViewClub/ViewClub.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("/Login/login1.fxml"));
+
         Scene scene = new Scene(root, 1180.0, 655.0);
 
 
 
         // Load the CSS file
-        scene.getStylesheets().add(getClass().getResource("/ViewClub/styles.css").toExternalForm());
+      //  scene.getStylesheets().add(getClass().getResource("/ViewClub/styles.css").toExternalForm());
 
         primaryStage.setTitle("Match Mate");
-        Image icon = new Image(getClass().getResourceAsStream("/icon.jpg"));
+        Image icon = new Image(getClass().getResourceAsStream("/Images/icon.jpg"));
 
         // Set the icon
         primaryStage.getIcons().add(icon);

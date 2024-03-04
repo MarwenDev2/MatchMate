@@ -163,3 +163,15 @@
 .shadow {
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.2), 10.0, 0.0, 0.0, 10.0)
 }
+
+.notification-button {
+    -fx-background-color: #2196F3; /* Blue background color */
+    -fx-text-fill: white; /* White text color */
+    -fx-font-family: "Bell MT"; /* Set font family */
+    -fx-font-size: 18px; /* Set font size */
+    -fx-cursor: hand; /* Show hand cursor on hover */
+}
+
+.notification-button:hover {
+    -fx-background-color: #1976D2; /* Darker blue on hover */
+}

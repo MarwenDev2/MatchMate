@@ -22,7 +22,7 @@
 /* Form Buttons */
 .form-button {
     -fx-font-size: 16px;
-    -fx-pref-width: 100px;
+    -fx-pref-width: 140px;
     -fx-background-color: #28a745; /* Green button background color */
     -fx-text-fill: white; /* White button text color */
     -fx-padding: 10px 20px;
@@ -66,6 +66,11 @@
 
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
+}
+
+.maintenance-button {
+    -fx-background-color: red;
+    -fx-text-fill: white;
 }
 
 /* Additional Styling */

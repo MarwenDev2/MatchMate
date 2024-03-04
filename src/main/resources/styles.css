@@ -1,0 +1,25 @@
+/* CSS for the club card */
+.button-delete {
+    -fx-background-color: #f44336; /* Red */
+    -fx-text-fill: white;
+}
+
+.button-view-stadiums {
+    -fx-background-color: #2196f3; /* Blue */
+    -fx-text-fill: white;
+}
+
+.button-edit {
+    -fx-background-color: #4caf50; /* Green */
+    -fx-text-fill: white;
+}
+
+.label-bold {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; /* Dark gray text */
+}

@@ -3,30 +3,20 @@ package entities;
 import java.util.Objects;
 
 public class User {
-    private int id ;
-    private String firstName ;
+
+    private int id;
+    private String firstName;
     private String lastName;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String password;
-    private String role;
+    private Role role;
     private String image;
 
-    public User() {
-    }
 
-    public User(String firstName, String lastName, int phoneNumber, String email, String password, String role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
-
-
-
-    public User(int id, String firstName, String lastName, int phoneNumber, String email, String password, String role, String image) {
+public User(){
+}
+    public User(int id, String firstName, String lastName, String phoneNumber, String email, String password, Role role, String image) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,6 +27,21 @@ public class User {
         this.image = image;
     }
 
+    public User(String firstName, String lastName, String phoneNumber, String email, String password, Role role, String image) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.image = image;
+    }
+
+    public User(int id) {
+        this.id = id;
+    }
+
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -61,11 +66,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -85,11 +90,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -100,24 +105,39 @@ public class User {
     public void setImage(String image) {
         this.image = image;
     }
-
+    // Override equals method
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(role, user.role);
+        return id == user.id &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                role == user.role &&
+                Objects.equals(image, user.image);
     }
+
+    // Override hashCode method
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, phoneNumber, email, password, role, image);
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
+                ", role=" + role +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

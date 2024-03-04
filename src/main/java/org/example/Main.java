@@ -2,7 +2,11 @@ package org.example;
 
 import database.Connexion;
 import entities.*;
-import services.*;
+import services.Club.ClubDAO;
+import services.Image.ImageDAO;
+import services.Image.ImageStadiumDAO;
+import services.Reservation.ReservationDAO;
+import services.Stadium.StadiumDAO;
 
 import java.sql.*;
 import java.sql.Date;
@@ -33,8 +37,7 @@ public class Main {
         newClub.setEndTime(new Time(15,00,00));
         newClub.setDescription("sdfsvssv");
         newClub.setStadiumNbr(0);
-        newClub.setHeight(14f);
-        newClub.setWidth(12f);
+
 
         Stadium newStadium = new Stadium();
         newStadium.setReference("CLY317");

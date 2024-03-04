@@ -5,18 +5,19 @@ import java.util.Objects;
 public class Stadium {
     private String reference;
     private Club club;
-    private float height,width;
-    private int price,rate;
+    private float height, width;
+    private int price, rate;
 
-    public Stadium() {
-    }
+    private int maintenance;
 
-    public Stadium(Club club, float height, float width, int price, int rate) {
+    public Stadium(String reference, Club club, float height, float width, int price, int rate, int maintenance) {
+        this.reference = reference;
         this.club = club;
         this.height = height;
         this.width = width;
         this.price = price;
         this.rate = rate;
+        this.maintenance = maintenance;
     }
 
     public Stadium(String reference, Club club, float height, float width, int price) {
@@ -27,13 +28,16 @@ public class Stadium {
         this.price = price;
     }
 
-    public Stadium(String reference, Club club, float height, float width, int price, int rate) {
+    public Stadium() {
+    }
+
+    public Stadium(String reference, Club club, float height, float width, int price, int maintenance) {
         this.reference = reference;
         this.club = club;
         this.height = height;
         this.width = width;
         this.price = price;
-        this.rate = rate;
+        this.maintenance = maintenance;
     }
 
     public String getReference() {
@@ -84,12 +88,12 @@ public class Stadium {
         this.rate = rate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Stadium stadium = (Stadium) o;
-        return Objects.equals(reference, stadium.reference);
+    public int getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(int maintenance) {
+        this.maintenance = maintenance;
     }
 
     @Override
@@ -101,6 +105,7 @@ public class Stadium {
                 ", width=" + width +
                 ", price=" + price +
                 ", rate=" + rate +
+                ", maintenance=" + maintenance +
                 '}';
     }
 }

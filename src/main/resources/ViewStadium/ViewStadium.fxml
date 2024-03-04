@@ -2,11 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,69 +16,82 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewStadiumController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Stadium.ViewStadiumController">
     <top>
         <VBox alignment="CENTER_LEFT" spacing="10" />
     </top>
     <center>
 
         <AnchorPane prefHeight="639.0" prefWidth="978.0">
-            <ImageView fitHeight="655.0" fitWidth="1180.0" layoutY="-1.0" opacity="0.14">
+            <ImageView fitHeight="655.0" fitWidth="1180.0" layoutY="-1.0" opacity="0.86">
                 <image>
-                    <Image url="@/bgfield.jpg" />
+                    <Image url="@/Images/bgfield.jpg" />
                 </image>
             </ImageView>
-            <!-- Club Information Form -->
-            <TableView fx:id="stadiumTableView" layoutX="372.0" layoutY="144.0" prefHeight="355.0" prefWidth="716.0" AnchorPane.leftAnchor="372.0" AnchorPane.rightAnchor="92.0">
-                <columns>
-                    <TableColumn fx:id="referenceColumn" prefWidth="100.0" text="Reference">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="reference" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="heightColumn" prefWidth="116.0" text="Height">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="height" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="widthColumn" prefWidth="104.0" text="Width">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="width" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="priceColumn" prefWidth="106.4000244140625" text="Price">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="price" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="rateColumn" prefWidth="116.0" text="Rate">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="rate" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="actionsColumn" prefWidth="171.99993896484375" text="Actions" />
-                </columns>
-            </TableView>
-            <Button fx:id="addButton" layoutX="426.0" layoutY="531.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Add">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
-            <Button fx:id="backButton" layoutX="848.0" layoutY="531.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Return">
-                <font>
-                    <Font name="System Bold" size="12.0" />
-                </font>
-            </Button>
 
 
-            <HBox layoutX="14.0" layoutY="14.0" />
-            <TextField layoutX="526.0" layoutY="70.0" prefHeight="34.0" prefWidth="321.0" promptText="Search..." styleClass="search-field" />
-            <ImageView fitHeight="51.0" fitWidth="51.0" layoutX="455.0" layoutY="61.0">
-                <image>
-                    <Image url="@/club.png" />
-                </image>
-            </ImageView>
-            <!-- Logo and User Info Container -->
+            <!--  <TableView fx:id="stadiumTableView" layoutX="320.0" layoutY="144.0" prefHeight="355.0" prefWidth="792.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="68.0">
+                 <columns>
+                     <TableColumn fx:id="referenceColumn" prefWidth="133.066650390625" text="Reference">
+                         <cellValueFactory>
+                             <PropertyValueFactory property="reference" />
+                         </cellValueFactory>
+                     </TableColumn>
+                     <TableColumn fx:id="heightColumn" prefWidth="114.93331909179688" text="Height">
+                         <cellValueFactory>
+                             <PropertyValueFactory property="height" />
+                         </cellValueFactory>
+                     </TableColumn>
+                     <TableColumn fx:id="widthColumn" prefWidth="118.4000244140625" text="Width">
+                         <cellValueFactory>
+                             <PropertyValueFactory property="width" />
+                         </cellValueFactory>
+                     </TableColumn>
+                     <TableColumn fx:id="priceColumn" prefWidth="123.73333740234375" text="Price">
+                         <cellValueFactory>
+                             <PropertyValueFactory property="price" />
+                         </cellValueFactory>
+                     </TableColumn>
+                     <TableColumn fx:id="rateColumn" prefWidth="122.13323974609375" text="Rate">
+                         <cellValueFactory>
+                             <PropertyValueFactory property="rate" />
+                         </cellValueFactory>
+                     </TableColumn>
+                     <TableColumn fx:id="actionsColumn" prefWidth="175.99993896484375" text="Actions" />
+                 </columns>
+             </TableView>   -->
+             <Button fx:id="addButton" layoutX="327.0" layoutY="538.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Add" visible="false">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font>
+                 <graphic>
+                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@/Images/footballadd.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+
+             </Button>
+             <Button fx:id="backButton" layoutX="1006.0" layoutY="538.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Return">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font>
+                 <graphic>
+                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@/Images/back-arrow.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+
+             </Button>
+
+
+             <HBox layoutX="14.0" layoutY="14.0" />
+            <ComboBox fx:id="prizeCombo" layoutX="462.0" layoutY="78.0" prefWidth="150.0" promptText="Prize" />
+            <ComboBox fx:id="rateCombo" layoutX="729.0" layoutY="78.0" prefWidth="150.0" promptText="Rate" />
+             <!-- Logo and User Info Container -->
             <VBox layoutX="8.0" layoutY="16.0" prefHeight="625.0" prefWidth="210.0" styleClass="container" stylesheets="@../ViewClub/styles.css">
                 <children>
                     <!-- User Info -->
@@ -92,12 +103,12 @@
                             <!-- Logo -->
                             <ImageView fitHeight="49.0" fitWidth="52.0">
                                 <image>
-                                    <Image url="@/Logo.png" />
+                                    <Image url="@/Images/logo.png" />
                                 </image>
                             </ImageView>
                             <ImageView fitHeight="22.0" fitWidth="132.0">
                                 <image>
-                                    <Image url="@/matchmate.png" />
+                                    <Image url="@/Images/matchmate.png" />
                                 </image>
                                 <HBox.margin>
                                     <Insets top="15.0" />
@@ -118,7 +129,7 @@
                         <children>
                             <ImageView fitHeight="66.0" fitWidth="68.0" styleClass="shadow">
                                 <image>
-                                    <Image url="@/user.png" />
+                                    <Image url="@/Images/user.png" />
                                 </image>
                             </ImageView>
                             <VBox alignment="CENTER" prefHeight="63.0" prefWidth="142.0">
@@ -163,7 +174,7 @@
                         <children>
                             <ImageView fitHeight="58.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                                 <image>
-                                    <Image url="@/clubside.png" />
+                                    <Image url="@/Images/clubside.png" />
                                 </image>
                                 <HBox.margin>
                                     <Insets left="8.0" top="3.0" />
@@ -183,7 +194,7 @@
                         <children>
                             <ImageView fitHeight="48.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                                 <image>
-                                    <Image url="@/reservation.png" />
+                                    <Image url="@/Images/reservation.png" />
                                 </image>
                                 <HBox.margin>
                                     <Insets left="12.0" top="5.0" />
@@ -203,7 +214,7 @@
                         <children>
                             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                                 <image>
-                                    <Image url="@/event.png" />
+                                    <Image url="@/Images/event.png" />
                                 </image>
                                 <HBox.margin>
                                     <Insets left="10.0" top="5.0" />
@@ -223,7 +234,7 @@
                         <children>
                             <ImageView fitHeight="55.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                                 <image>
-                                    <Image url="@/claim.png" />
+                                    <Image url="@/Images/claim.png" />
                                 </image>
                                 <HBox.margin>
                                     <Insets left="10.0" top="5.0" />
@@ -244,6 +255,21 @@
                     <Insets top="5.0" />
                 </padding>
             </VBox>
+            <!-- Club Information Form -->
+            <ScrollPane fx:id="scrollPane" layoutX="250.0" layoutY="158.0" prefHeight="342.0" prefWidth="942.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
+                <!-- Content will be loaded dynamically here -->
+                <HBox fx:id="stadiumCardsContainer" spacing="20" />
+            </ScrollPane>
+         <ImageView fitHeight="35.0" fitWidth="38.0" layoutX="413.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@/Images/salary.png" />
+                 </image>
+         </ImageView>
+         <ImageView fitHeight="35.0" fitWidth="38.0" layoutX="681.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+             <image>
+                 <Image url="@/Images/star1.png" />
+             </image>
+         </ImageView>
         </AnchorPane>
     </center>
 </BorderPane>

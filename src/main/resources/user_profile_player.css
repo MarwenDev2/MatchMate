@@ -1,0 +1,35 @@
+.page {
+    -fx-background-color: #9db29d;
+}
+.side_bar_anchorpane{
+    -fx-background-color: #white ;
+}
+
+.btn_navbar {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-border-color:null;
+    -fx-background-color: #5a855a;
+    -fx-background-radius: 10 10 10 10;
+}
+.btn_navbar:hover {
+    -fx-background-color: null;
+    -fx-font-weight:bold;
+    -fx-background-radius: 0%;
+    -fx-border-color: green;
+    -fx-text-fill: #242d35;
+    -fx-font-size: 14px;
+}
+.btn {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-radius: 5 5 5 2;
+    -fx-background-color: #6d6e6d;
+}
+
+.player_img{
+    -fx-border-radius: 10 10 10 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 8, 0, 0, 0);
+}

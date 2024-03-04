@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="283.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Club.ClubCardController">
+    <children>
+        <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f0f0f0" height="269.0" layoutX="10.0" layoutY="10.0" stroke="#bdbdbd" strokeType="INSIDE" width="428.0" />
+        <ImageView fx:id="clubImageView" fitHeight="188.0" fitWidth="142.0" layoutX="20.0" layoutY="20.0" />
+        <HBox layoutX="140.0" layoutY="20.0" spacing="10.0" />
+        <Label fx:id="cityLabel" layoutX="196.0" layoutY="72.0" text="City" textFill="#666666" />
+        <Label fx:id="startTimeLabel" layoutX="195.0" layoutY="101.0" text="Start Time: 10:00 AM" textFill="#666666" />
+        <Label fx:id="endTimeLabel" layoutX="195.0" layoutY="131.0" text="End Time: 06:00 PM" textFill="#666666" />
+        <Label fx:id="stadiumNbrLabel" layoutX="195.0" layoutY="161.0" text="Stadium Number: 1" textFill="#666666" />
+        <Label fx:id="descriptionLabel" layoutX="195.0" layoutY="189.0" prefHeight="18.0" prefWidth="210.0" text="Description here" textFill="#666666" wrapText="true" />
+        <HBox layoutX="20.0" layoutY="220.0" spacing="10.0">
+            <Button fx:id="deletebtn" onAction="#deleteClub" styleClass="button-delete" text="Delete" />
+            <Button fx:id="viewStadiumsButton" styleClass="button-view-stadiums" text="View Stadiums" />
+            <!-- Edit button (optional) -->
+            <Button fx:id="editbtn" onAction="#editClub" styleClass="button-edit" text="Edit" />
+        </HBox>
+         <Label fx:id="governorateLabel" layoutX="196.0" layoutY="46.0" text="Governorate" textFill="#666666" />
+         <Label fx:id="nameLabel" layoutX="196.0" layoutY="16.0" text="Club Name" textFill="#333333">
+             <font>
+                 <javafx.scene.text.Font name="Arial Bold" size="16.0" />
+             </font>
+         </Label>
+      <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="170.0" layoutY="17.0">
+         <image>
+            <Image url="@/Images/football-club.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="170.0" layoutY="42.0">
+         <image>
+            <Image url="@/Images/governorate.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="170.0" layoutY="69.0">
+         <image>
+            <Image url="@/Images/cityscape.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="169.0" layoutY="100.0">
+         <image>
+            <Image url="@/Images/start (1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="169.0" layoutY="130.0">
+         <image>
+            <Image url="@/Images/endtime.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="21.0" layoutX="169.0" layoutY="157.0">
+         <image>
+            <Image url="@/Images/football-field.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="169.0" layoutY="188.0">
+         <image>
+            <Image url="@/Images/edit-info.png" />
+         </image>
+      </ImageView>
+    </children>
+    <stylesheets>
+        <URL value="@/styles.css" />
+    </stylesheets>
+</AnchorPane>

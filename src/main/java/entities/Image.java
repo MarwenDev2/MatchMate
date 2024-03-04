@@ -22,6 +22,10 @@ public class Image {
         this.type = type;
     }
 
+    public Image(String url) {
+        this.url = url;
+    }
+
     public int getId() {
         return id;
     }

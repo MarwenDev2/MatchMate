@@ -19,24 +19,34 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NewClubController">
+<?import com.sothawo.mapjfx.MapView?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Club.NewClubController">
 <top>
    <VBox alignment="CENTER_LEFT" spacing="10" />
 </top>
 <center>
 
    <AnchorPane prefHeight="639.0" prefWidth="978.0">
-      <ImageView fitHeight="655.0" fitWidth="1180.0" layoutY="-1.0" opacity="0.14">
+      <ImageView fitHeight="655.0" fitWidth="1180.0" layoutY="-1.0" opacity="0.86">
          <image>
-            <Image url="@/bgfield.jpg" />
+            <Image url="@/Images/bgfield.jpg" />
          </image>
       </ImageView>
       <!-- Club Information Form -->
-      <AnchorPane layoutX="318.0" layoutY="11.0" prefHeight="636.0" prefWidth="693.0">
+      <AnchorPane layoutX="240.0" layoutY="11.0" prefHeight="636.0" prefWidth="693.0">
+
+         <!-- MapView -->
+         <MapView fx:id="mapView" layoutX="377.0" layoutY="14.0" prefHeight="266.0" prefWidth="542.0" visible="false"/>
+         <!-- MapView -->
+         <TextField fx:id="latField" promptText="Latitude" layoutX="750" layoutY="300"/>
+
+         <TextField fx:id="longField" promptText="Longitude" layoutX="750.0" layoutY="350"/>
+
          <!-- Club Information Form -->
          <Label fx:id="titleLabel" layoutX="46.0" layoutY="27.0" styleClass="title" text="New Club Information" />
-         <VBox layoutX="39.0" layoutY="84.0" prefHeight="469.0" prefWidth="575.0" spacing="10">
+         <VBox layoutX="39.0" layoutY="94.0" prefHeight="469.0" prefWidth="575.0" spacing="10">
             <HBox spacing="10">
                <Label styleClass="form-label" stylesheets="@../NewStadium/styles.css" text="Club Name:" />
                <TextField fx:id="clubNameField">
@@ -45,18 +55,19 @@
                      </HBox.margin></TextField>
             </HBox>
             <HBox spacing="10">
-               <Label styleClass="form-label" text="Height:" />
-               <TextField fx:id="heightField">
+               <Label styleClass="form-label" text="Governorate:" />
+               <ComboBox fx:id="heightField" promptText="Select Governorate">
                      <HBox.margin>
-                        <Insets left="100.0" />
-                     </HBox.margin></TextField>
+                        <Insets left="57.0" />
+                     </HBox.margin></ComboBox>
+
             </HBox>
             <HBox spacing="10">
-               <Label styleClass="form-label" text="Width:" />
-               <TextField fx:id="widthField">
+               <Label styleClass="form-label" text="City:" />
+               <ComboBox fx:id="widthField" promptText="Select City">
                      <HBox.margin>
-                        <Insets left="105.0" />
-                     </HBox.margin></TextField>
+                        <Insets left="121.0" />
+                     </HBox.margin></ComboBox>
             </HBox>
             <HBox spacing="10">
                <Label styleClass="form-label" text="Start Time:" />
@@ -95,6 +106,9 @@
                      <HBox.margin>
                         <Insets left="53.0" />
                      </HBox.margin></TextArea>
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin>
             </HBox>
             <HBox prefHeight="64.0" prefWidth="574.0" spacing="10">
                <Label styleClass="form-label" text="Images:" />
@@ -104,7 +118,16 @@
                      </font>
                      <HBox.margin>
                         <Insets left="98.0" />
-                     </HBox.margin></Button>
+                     </HBox.margin>
+                  <graphic>
+                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@/Images/photo.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+
+               </Button>
             </HBox>
             <VBox spacing="10">
                <ScrollPane fx:id="imageScrollPane" prefHeight="123.0" prefWidth="577.0">
@@ -114,13 +137,39 @@
                </ScrollPane>
             </VBox>
          </VBox>
-         <HBox fillHeight="false" layoutX="25.0" layoutY="553.0" prefHeight="41.0" prefWidth="643.0" spacing="10">
-            <Button fx:id="saveButton" onAction="#saveClub" prefHeight="38.0" prefWidth="94.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Save" />
-            <Button fx:id="clearButton" onAction="#clear" prefHeight="38.0" prefWidth="102.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Clear" />
-            <Button fx:id="cancelButton" onAction="#cancel" prefHeight="38.0" prefWidth="102.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Cancel" />
+         <HBox fillHeight="false" layoutX="25.0" layoutY="571.0" prefHeight="41.0" prefWidth="643.0" spacing="10">
+            <Button fx:id="saveButton" onAction="#saveClub" prefHeight="38.0" prefWidth="94.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Save" >
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/Images/goal.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="clearButton" onAction="#clear" prefHeight="38.0" prefWidth="102.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Clear" >
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/Images/delete.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="cancelButton" onAction="#cancel" prefHeight="38.0" prefWidth="102.0" styleClass="form-button" stylesheets="@../NewStadium/styles.css" text="Cancel" >
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/Images/close (1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </HBox>
-      </AnchorPane>
-      <!-- Logo and User Info Container -->
+            <!-- You can adjust the size of the WebView here -->
+          <WebView fx:id="mapWebView" layoutX="377.0" layoutY="14.0" prefHeight="266.0" prefWidth="542.0" visible="false"/>
+     </AnchorPane>
+     <!-- Logo and User Info Container -->
       <VBox layoutX="8.0" layoutY="16.0" prefHeight="625.0" prefWidth="210.0" styleClass="container" stylesheets="@../ViewClub/styles.css">
          <children>
             <!-- User Info -->
@@ -132,12 +181,12 @@
                   <!-- Logo -->
                   <ImageView fitHeight="49.0" fitWidth="52.0">
                      <image>
-                        <Image url="@/Logo.png" />
+                        <Image url="@/Images/logo.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="22.0" fitWidth="132.0">
                      <image>
-                        <Image url="@/matchmate.png" />
+                        <Image url="@/Images/matchmate.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="15.0" />
@@ -158,7 +207,7 @@
                <children>
                   <ImageView fitHeight="66.0" fitWidth="68.0" styleClass="shadow">
                      <image>
-                        <Image url="@/user.png" />
+                        <Image url="@/Images/user.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="63.0" prefWidth="142.0">
@@ -211,7 +260,7 @@
                <children>
                   <ImageView fitHeight="58.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                      <image>
-                        <Image url="@/clubside.png" />
+                        <Image url="@/Images/clubside.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="8.0" top="3.0" />
@@ -231,7 +280,7 @@
                <children>
                   <ImageView fitHeight="48.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                      <image>
-                        <Image url="@/reservation.png" />
+                        <Image url="@/Images/reservation.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="12.0" top="5.0" />
@@ -251,7 +300,7 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                      <image>
-                        <Image url="@/event.png" />
+                        <Image url="@/Images/event.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" top="5.0" />
@@ -271,7 +320,7 @@
                <children>
                   <ImageView fitHeight="55.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" styleClass="shadow">
                      <image>
-                        <Image url="@/claim.png" />
+                        <Image url="@/Images/claim.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="10.0" top="5.0" />
@@ -294,4 +343,8 @@
       </VBox>
    </AnchorPane>
 </center>
+   <right>
+      <VBox alignment="CENTER" spacing="10" />
+   </right>
+
 </BorderPane>

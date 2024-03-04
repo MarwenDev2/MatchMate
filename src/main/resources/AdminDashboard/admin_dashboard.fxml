@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../user_profile_player.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.User.AdminDashboardController">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="1000.0">
+         <children>
+            <BorderPane layoutX="29.0" layoutY="14.0" prefHeight="523.2" prefWidth="788.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="45.0" prefWidth="200.0" stylesheets="@../user_profile_player.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="70.0" layoutY="-77.0" prefHeight="35.0" prefWidth="200.0" />
+                        <Button fx:id="profile_btn" layoutX="827.0" layoutY="9.0" mnemonicParsing="false" onAction="#seeProfile" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: black;" styleClass="btn" stylesheets="@../user_profile_player.css" text="profile" textFill="#faf5f5" />
+                        <Button fx:id="logout_btn" layoutX="761.0" layoutY="9.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: black;" styleClass="btn" stylesheets="@../user_profile_player.css" text="logout" textFill="#faf5f5" />
+                        <Label layoutX="51.0" layoutY="18.0" prefHeight="22.0" prefWidth="142.0" text="MatchMate Admin " textFill="#636060">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="46.0" fitWidth="56.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#636060" layoutX="185.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Managment ">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutY="65.0" prefHeight="477.6" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="50.0" layoutY="14.0" prefHeight="27.0" prefWidth="102.0" text="WELCOME">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="username" layoutX="50.0" layoutY="48.0" prefHeight="27.0" prefWidth="162.0" textAlignment="CENTER" textFill="GREEN">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="59.399993896484375" endY="7.62939453125E-6" layoutX="120.0" layoutY="84.0" startX="-100.0" />
+                              <Button fx:id="users_btn" layoutX="26.0" layoutY="145.0" mnemonicParsing="false" onAction="#seeUsers" prefHeight="42.0" prefWidth="112.0" styleClass="btn_navbar" stylesheets="@../user_profile_player.css" text="USERS" />
+                              <Label fx:id="userName_label" layoutX="86.0" layoutY="62.0" />
+                              <Button fx:id="CLUBS_btn" layoutX="27.0" layoutY="198.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" styleClass="btn_navbar" text="CLUBS" />
+                              <Button fx:id="FIELDS_btn" layoutX="27.0" layoutY="248.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="110.0" styleClass="btn_navbar" text="FIELDS" />
+                              <Button fx:id="STORE_btn" layoutX="27.0" layoutY="297.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="btn_navbar" text="STORE" />
+                              <Button fx:id="RECLAMATIONS_btn4" layoutX="28.0" layoutY="349.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="108.0" styleClass="btn_navbar" text="RECLAMATIONS" />
+                              <Button fx:id="EVENTS_btn" layoutX="26.0" layoutY="402.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="112.0" styleClass="btn_navbar" text="EVENTS" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="-7.2" layoutY="-0.8" prefHeight="534.0" prefWidth="699.0" styleClass="page" stylesheets="@../user_profile_player.css" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="-1.0">
+                           <children>
+                              <AnchorPane layoutX="13.0" layoutY="39.0" prefHeight="200.0" prefWidth="552.0">
+                                 <children>
+                                    <TableView fx:id="usersTableView" layoutY="15.0" prefHeight="258.0" prefWidth="678.0">
+                                      <columns>
+                                          <TableColumn fx:id="users_tableView_id" minWidth="0.0" prefWidth="0.0" text="ID" />
+                                        <TableColumn fx:id="users_tableView_firstname" prefWidth="115.199951171875" text="FirstName" />
+                                        <TableColumn fx:id="users_tableView_lastname" prefWidth="83.199951171875" text="LastName" />
+                                          <TableColumn fx:id="users_tableView_phone" prefWidth="127.99996948242188" text="Phone" />
+                                          <TableColumn fx:id="users_tableView_email" prefWidth="154.39996337890625" text="Email" />
+                                          <TableColumn fx:id="users_tableView_role" minWidth="0.79998779296875" prefWidth="68.0" text="Role" />
+                                          <TableColumn fx:id="users_tableView_img" prefWidth="133.5999755859375" text="Image" />
+                                          <TableColumn fx:id="users_tableView_passwoard" minWidth="0.0" prefWidth="0.0" text="Password" />
+                                      </columns>
+                                       <items>
+                                          <FXCollections fx:factory="observableArrayList" />
+                                       </items>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <TextField fx:id="users_add_lastname" layoutX="75.0" layoutY="411.0" />
+                              <TextField fx:id="users_add_firstname" layoutX="75.0" layoutY="373.0" />
+                              <Label layoutX="14.0" layoutY="377.0" text="FirstName" />
+                              <Label layoutX="19.0" layoutY="415.0" text="LastName" />
+                              <TextField fx:id="users_add_phone" layoutX="75.0" layoutY="455.0" />
+                              <Label layoutX="21.0" layoutY="459.0" text="Phone # : " />
+                              <Label layoutX="27.0" layoutY="339.0" text="Role" />
+                              <TextField fx:id="users_add_email" layoutX="75.0" layoutY="499.0" />
+                              <Label layoutX="27.0" layoutY="503.0" text="Email" />
+                              <ImageView fx:id="users_add_img" fitHeight="109.0" fitWidth="185.0" layoutX="309.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
+                              <Button fx:id="users_add_img_upload_btn" layoutX="525.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleLoadImageButton" text="Upload" />
+                              <Label layoutX="250.0" layoutY="341.0" text="Image" />
+                              <Button fx:id="users_clear" layoutX="258.0" layoutY="483.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="31.0" prefWidth="68.0" styleClass="bt,n" stylesheets="@../user_profile_player.css" text="Clear">
+                                 <font>
+                                    <Font name="Arial Nova" size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="users_delete" layoutX="415.0" layoutY="485.0" mnemonicParsing="false" onAction="#deleteUser" style="-fx-background-color: #407a52;" styleClass="bt,n" stylesheets="@../user_profile_player.css" text="Delete" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Nova" size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="users_add_updatez" layoutX="486.0" layoutY="485.0" mnemonicParsing="false" onAction="#updateUser" styleClass="btn" stylesheets="@../user_profile_player.css" text="Update" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Nova" size="16.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="password_user_txtfield" layoutX="427.0" layoutY="415.0" visible="false" />
+                              <Button fx:id="add_user_btn" layoutX="577.0" layoutY="485.0" mnemonicParsing="false" onAction="#addUser" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #407a52;" styleClass="bt,n" stylesheets="@../user_profile_player.css" text="Add User " textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Nova" size="16.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="users_add_role" layoutX="73.0" layoutY="335.0" prefHeight="26.0" prefWidth="153.0" />
+                              <ComboBox fx:id="roleComboBox" layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="ROLE" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

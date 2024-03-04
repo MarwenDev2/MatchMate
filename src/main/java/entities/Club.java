@@ -7,54 +7,69 @@ public class Club {
     private int id;
     private User user;
     private String name;
-    private Float height,width;
+    private String governorate;
+    private String city;
     private Time startTime;
     private Time endTime;
     private int stadiumNbr;
 
     private String description;
+    private double latitude; // Added latitude attribute
+    private double longitude; // Added longitude attribute
+
 
     public Club() {
     }
 
-    public Club(int id, User user, String name, Float height, Float width, Time startTime, Time endTime, int stadiumNbr, String description) {
+
+    public Club(User user, String name, String governorate, String city, Time startTime, Time endTime, int stadiumNbr, String description, double latitude, double longitude) {
+        this.user = user;
+        this.name = name;
+        this.governorate = governorate;
+        this.city = city;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.stadiumNbr = stadiumNbr;
+        this.description = description;
+        this.latitude = latitude; // Initialize latitude
+        this.longitude = longitude; // Initialize longitude
+    }
+
+    public Club(User user, String name, String governorate, String city, Time startTime, Time endTime, int stadiumNbr, String description) {
+        this.user = user;
+        this.name = name;
+        this.governorate = governorate;
+        this.city = city;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.stadiumNbr = stadiumNbr;
+        this.description = description;
+    }
+
+    public Club(int id, User user, String name, String governorate, String city, Time startTime, Time endTime, int stadiumNbr, String description) {
         this.id = id;
         this.user = user;
         this.name = name;
-        this.height = height;
-        this.width = width;
+        this.governorate = governorate;
+        this.city = city;
         this.startTime = startTime;
         this.endTime = endTime;
         this.stadiumNbr = stadiumNbr;
         this.description = description;
     }
 
-    public Club(String name, Float height, Float width, Time startTime, Time endTime, String description) {
-        this.name = name;
-        this.height = height;
-        this.width = width;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.description = description;
-    }
-
-    public Club(User user, String name, Float height, Float width, Time startTime, Time endTime, int stadiumNbr, String description) {
+    public Club(int id, User user, String name, String governorate, String city, Time startTime, Time endTime, int stadiumNbr, String description, double latitude, double longitude) {
+        this.id = id;
         this.user = user;
         this.name = name;
-        this.height = height;
-        this.width = width;
+        this.governorate = governorate;
+        this.city = city;
         this.startTime = startTime;
         this.endTime = endTime;
         this.stadiumNbr = stadiumNbr;
         this.description = description;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public int getId() {
@@ -65,6 +80,14 @@ public class Club {
         this.id = id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getName() {
         return name;
     }
@@ -73,20 +96,20 @@ public class Club {
         this.name = name;
     }
 
-    public Float getHeight() {
-        return height;
+    public String getGovernorate() {
+        return governorate;
     }
 
-    public void setHeight(Float height) {
-        this.height = height;
+    public void setGovernorate(String governorate) {
+        this.governorate = governorate;
     }
 
-    public Float getWidth() {
-        return width;
+    public String getCity() {
+        return city;
     }
 
-    public void setWidth(Float width) {
-        this.width = width;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public Time getStartTime() {
@@ -121,12 +144,20 @@ public class Club {
         this.description = description;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Club club = (Club) o;
-        return id == club.id;
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     @Override
@@ -135,12 +166,14 @@ public class Club {
                 "id=" + id +
                 ", user=" + user +
                 ", name='" + name + '\'' +
-                ", height=" + height +
-                ", width=" + width +
+                ", governorate='" + governorate + '\'' +
+                ", city='" + city + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", stadiumNbr=" + stadiumNbr +
                 ", description='" + description + '\'' +
+                ", latitude=" + latitude + // Include latitude in toString()
+                ", longitude=" + longitude + // Include longitude in toString()
                 '}';
     }
 }

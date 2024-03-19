@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Reservation.ChartsController">
+    <BarChart fx:id="reservationPerClubBarChart">
+        <xAxis>
+            <CategoryAxis fx:id="clubXAxis"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="clubYAxis"/>
+        </yAxis>
+    </BarChart>
+    <LineChart fx:id="reservationPerMonthLineChart">
+        <xAxis>
+            <CategoryAxis fx:id="monthXAxis"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="monthYAxis"/>
+        </yAxis>
+    </LineChart>
+</VBox>

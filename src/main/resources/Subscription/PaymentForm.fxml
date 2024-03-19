@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="655.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Subscription.PaymentFormController">
+    <stylesheets>
+        <URL value="@../styles2.css" />
+    </stylesheets>
+    <!-- Add subscription cards here -->
+    <VBox layoutX="141.0" layoutY="150.0" styleClass="subscription-card">
+        <ImageView fitHeight="100" fitWidth="100" styleClass="subscription-image">
+            <image>
+                <Image url="@/Images/bronze.png" />
+            </image>
+        </ImageView>
+        <Label styleClass="subscription-title" text="Bronze" />
+        <Label styleClass="subscription-description" text="With our Bronze subscription, you'll unlock the ability to create 1 club. Enjoy basic features and get started on your club journey today!" />
+        <Label styleClass="subscription-info" text="Can create 1 club" />
+        <Label styleClass="subscription-info" text="50 DT/(month)" />
+        <Button fx:id="bronzeButton" onAction="#selectBronze" styleClass="subscription-button" text="Select" />
+    </VBox>
+
+    <VBox layoutX="465.0" layoutY="150.0" styleClass="subscription-card">
+        <ImageView fitHeight="100" fitWidth="100" styleClass="subscription-image">
+            <image>
+                <Image url="@/Images/silver.png" />
+            </image>
+        </ImageView>
+        <Label styleClass="subscription-title" text="Silver" />
+        <Label styleClass="subscription-description" text="Upgrade to our Silver subscription for more flexibility! Create up to 2 clubs and access additional features to manage your clubs with ease." />
+        <Label styleClass="subscription-info" text="Can create 2 clubs" />
+        <Label styleClass="subscription-info" text="90 DT/(month)" />
+        <Button fx:id="silverButton" onAction="#selectSilver" styleClass="subscription-button" text="Select" />
+    </VBox>
+
+    <VBox layoutX="794.0" layoutY="150.0" styleClass="subscription-card">
+        <ImageView fitHeight="100" fitWidth="100" styleClass="subscription-image">
+            <image>
+                <Image url="@/Images/gold1.png" />
+            </image>
+        </ImageView>
+        <Label styleClass="subscription-title" text="Gold" />
+        <Label styleClass="subscription-description" text="Unlock the ultimate club management experience with our Gold subscription. Create up to 3 clubs and enjoy premium features for seamless club administration." />
+        <Label styleClass="subscription-info" text="Can create 3 clubs" />
+        <Label styleClass="subscription-info" text="130 DT/(month)" />
+        <Button fx:id="goldButton" onAction="#selectGold" styleClass="subscription-button" text="Select" />
+    </VBox>
+</AnchorPane>

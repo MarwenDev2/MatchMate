@@ -1,0 +1,57 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane fx:id="AnotherCardForm" prefHeight="320.0" prefWidth="220.0" stylesheets="@../../../../../../../../untitled/src/main/resources/EventCardCss.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CardViewEvent">
+   <!-- Content of the second card -->
+   <children>
+      <!-- Image -->
+      <ImageView fx:id="ImageEvent" fitHeight="120.0" fitWidth="120.0" layoutX="50.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="likeButton" layoutX="278.0" layoutY="166.0" mnemonicParsing="false" onAction="#HandleLike" prefHeight="34.0" prefWidth="38.0" style="-fx-background-color: rgba(0, 0, 0, 0);">
+         <graphic>
+
+            <ImageView fx:id="redHeartImageView" fitHeight="25.0" fitWidth="25.0" visible="true">
+               <image>
+                  <Image url="@/Images/card_pay.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <!-- Event Name Header -->
+      <Label layoutX="0.0" layoutY="140.0" prefHeight="18.0" prefWidth="90.0" text="Event Name:" textAlignment="RIGHT" />
+
+      <!-- Event Name -->
+      <Label fx:id="NameLabel" layoutX="100.0" layoutY="140.0" prefHeight="18.0" prefWidth="120.0" text="Event Name" textAlignment="CENTER" />
+
+      <!-- Start Date Header -->
+      <Label layoutX="0.0" layoutY="165.0" prefHeight="18.0" prefWidth="90.0" text="Start Date:" textAlignment="RIGHT" />
+
+      <!-- Start Date -->
+      <Label fx:id="Start_Date" layoutX="100.0" layoutY="165.0" prefHeight="18.0" prefWidth="120.0" text="Start Date" textAlignment="CENTER" />
+
+      <!-- End Date Header -->
+      <Label layoutX="0.0" layoutY="190.0" prefHeight="18.0" prefWidth="90.0" text="End Date:" textAlignment="RIGHT" />
+
+      <!-- End Date -->
+      <Label fx:id="EndDateLabel" layoutX="100.0" layoutY="190.0" prefHeight="18.0" prefWidth="120.0" text="End Date" textAlignment="CENTER" />
+
+      <!-- Participants Header -->
+      <Label layoutX="0.0" layoutY="215.0" prefHeight="18.0" prefWidth="90.0" text="Participants:" textAlignment="RIGHT" />
+
+      <!-- Participants -->
+      <Label fx:id="ParticpatorsLabel" layoutX="100.0" layoutY="215.0" prefHeight="18.0" prefWidth="120.0" text="Participants: 0" textAlignment="CENTER" />
+
+      <!-- Price Header -->
+      <Label layoutX="0.0" layoutY="240.0" prefHeight="18.0" prefWidth="90.0" text="Price:" textAlignment="RIGHT" />
+
+      <!-- Price -->
+      <Label fx:id="PriceLabel" layoutX="100.0" layoutY="240.0" prefHeight="18.0" prefWidth="120.0" text="Price: $0.00" textAlignment="CENTER" />
+
+      <!-- Participate Button -->
+      <Button fx:id="ParticpateButton" layoutX="7.0" layoutY="265.0" minHeight="30.0" minWidth="36.0" onAction="#AddParticipation" prefHeight="34.0" prefWidth="97.0" text="Join" textAlignment="CENTER" />
+
+      <!-- Cancellation Button -->
+      <Button fx:id="cancellation" layoutX="116.0" layoutY="265.0" mnemonicParsing="false" onAction="#DeleteParticpation" prefHeight="34.0" prefWidth="97.0" text="Cancel" />
+   </children>
+</AnchorPane>

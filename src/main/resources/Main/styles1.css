@@ -1,0 +1,78 @@
+.search-box{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-background-radius: 100;
+}
+
+.search-button{
+    -fx-background-color: #828282;
+    -fx-background-radius: 30;
+}
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+
+.chosen-fruit-card{
+    -fx-background-color: #AEECEF;
+    -fx-background-radius: 30;
+}
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+.free-delivery-card{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+
+/* styles.css */
+
+/* Vertical layout for the card */
+.card {
+    -fx-spacing: 10;
+}
+
+/* Styling for the buttons */
+.delete-button {
+    -fx-background-color: #ff3333; /* Red color */
+    -fx-text-fill: white; /* White text color */
+}
+
+.modify-button {
+    -fx-background-color: #3377ff; /* Blue color */
+    -fx-text-fill: white; /* White text color */
+}
+.anchor-pane {
+    /* Add styles to AnchorPane here */
+    -fx-background-color: #f0f0f0; /* Set background color */
+}
+
+/* ScrollPane */
+.scroll-pane {
+    /* Add styles to ScrollPane here */
+    -fx-background: transparent; /* Set transparent background */
+    -fx-background-color: transparent; /* Set transparent background color */
+    -fx-border-color: transparent; /* Set transparent border color */
+}
+.button-hover {
+    transition: background-color 0.3s ease;
+}
+
+.button-hover:hover {
+    background-color: #f0f0f0; /* Change to your desired hover color */
+}
